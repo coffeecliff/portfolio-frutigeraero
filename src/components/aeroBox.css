@@ -1,0 +1,460 @@
+/* ============================================================
+   BOX COMPONENT — .aero-box
+   Variants: --sky | --aqua | --forest | --aurora | --glass
+   Sizes:    .aero-box-sm | (default) | .aero-box-lg | .aero-box-xl
+   ============================================================ */
+
+.aero-box {
+  --_bg-start:   var(--aero-sky-3);
+  --_bg-end:     var(--aero-sky-4);
+  --_border:     var(--aero-border-outer);
+  --_text:       var(--aero-text-light);
+  --_text-sub:   var(--aero-text-muted);
+  --_glow:       var(--aero-glow-sky);
+  --_radius:     var(--aero-radius-lg);
+  --_pad:        16px 20px;
+  --_icon-size:  42px;
+  --_font-size:  14px;
+  --_text-offset: 6px; 
+  
+
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: var(--_pad);
+  border-radius: var(--_radius);
+  border: 1px solid var(--_border);
+  background:
+    linear-gradient(
+      180deg,
+      rgba(255,255,255,0.52) 0%,
+      rgba(255,255,255,0.06) 48%,
+      rgba(255,255,255,0.00) 100%
+    ),
+    linear-gradient(155deg, var(--_bg-start), var(--_bg-end));
+  backdrop-filter: blur(10px) saturate(1.4);
+  -webkit-backdrop-filter: blur(10px) saturate(1.4);
+  box-shadow: var(--aero-shadow-md), inset 0 0 0 1px var(--aero-border-inner);
+  font-family: var(--aero-font-ui);
+  font-size: var(--_font-size);
+  color: var(--_text);
+  cursor: default;
+  transition:
+    transform 0.18s cubic-bezier(.22,.68,0,1.2),
+    box-shadow 0.22s ease,
+    filter 0.18s ease;
+  overflow: hidden;
+  width: 100%; 
+  box-sizing: border-box;
+}
+
+/* Gloss sheen pseudo-element */
+.aero-box::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: linear-gradient(
+    180deg,
+    rgba(255,255,255,0.55) 0%,
+    rgba(255,255,255,0.18) 46%,
+    rgba(255,255,255,0.00) 47%,
+    rgba(255,255,255,0.00) 100%
+  );
+  pointer-events: none;
+  z-index: 1;
+}
+
+.aero-box > * { position: relative; z-index: 2; }
+
+/* Hover lift */
+.aero-box:hover {
+  transform: translateY(-1.5px) scale(1.008);
+  box-shadow: var(--aero-shadow-lg), inset 0 0 0 1px var(--aero-border-light);
+  filter: brightness(1.06);
+}
+.aero-box:active {
+  transform: translateY(0) scale(0.999);
+  transition-duration: 0.08s;
+}
+
+/* ── Icon slot ────────────────────────────────────────────── */
+.aero-box-icon {
+  flex-shrink: 0;
+  width: var(--_icon-size);
+  height: var(--_icon-size);
+  border-radius: var(--aero-radius-md);
+  background:
+    linear-gradient(145deg, rgba(255,255,255,0.68), rgba(255,255,255,0.22)),
+    rgba(255,255,255,0.25);
+  border: 1px solid rgba(255,255,255,0.60);
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,0.80),
+    0 2px 6px rgba(0,80,140,0.20);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(var(--_icon-size) * 0.52);
+  color: var(--_text);
+  backdrop-filter: blur(4px);
+}
+
+/* ── Text area ────────────────────────────────────────────── */
+.aero-box-body {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  
+  /* 🌟 AS DUAS REGRAS QUE RESOLVEM O SEU PROBLEMA: */
+  min-width: 0;        /* Força o container flex a encolher além do tamanho do texto */
+  flex: 1 1 0%;        /* Distribui o espaço igualmente e impede o crescimento dinâmico */
+  overflow: hidden;    /* Corta absolutamente qualquer herança de largura de texto longo */
+  padding-left: 4px;
+  padding-right: 4px;
+  margin-left: var(--_text-offset);
+}
+
+.aero-box-label {
+  font-weight: 600;
+  font-size: var(--_font-size);
+  letter-spacing: 0.01em;
+  color: var(--_text);
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  text-shadow: 0 1px 3px rgba(0,40,80,0.30);
+  overflow: hidden;
+  width: 100%; 
+}
+
+.aero-box-sub {
+  font-size: calc(var(--_font-size) * 0.86);
+  color: var(--_text-sub);
+  text-shadow: 0 1px 2px rgba(0,30,60,0.22);
+  
+  /* 💻 Evita que subtextos longos também tentem esticar o box */
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width: 100%;
+}
+
+/* ── Color variants ───────────────────────────────────────── */
+.aero-box--sky {
+  --_bg-start: var(--aero-sky-3);
+  --_bg-end:   var(--aero-sky-5);
+  --_glow:     var(--aero-glow-sky);
+}
+.aero-box--aqua {
+  --_bg-start: var(--aero-aqua-3);
+  --_bg-end:   var(--aero-aqua-5);
+  --_glow:     var(--aero-glow-aqua);
+  --_border:   rgba(0, 120, 100, 0.25);
+}
+.aero-box--forest {
+  --_bg-start: var(--aero-forest-3);
+  --_bg-end:   var(--aero-forest-5);
+  --_border:   rgba(10, 100, 20, 0.22);
+}
+.aero-box--aurora {
+  --_bg-start: #6bcfd8;
+  --_bg-end:   #4488d4;
+  --_border:   rgba(40, 80, 200, 0.22);
+}
+.aero-box--glass {
+  --_bg-start: rgba(200, 235, 255, 0.45);
+  --_bg-end:   rgba(160, 210, 240, 0.30);
+  --_text:     var(--aero-text-dark);
+  --_text-sub: var(--aero-text-mid);
+  --_border:   rgba(80, 160, 210, 0.35);
+  backdrop-filter: blur(18px) saturate(1.6);
+}
+.aero-box--glass2 {
+  --_bg-start: rgba(200, 235, 255, 0.45);
+  --_bg-end:   rgba(160, 210, 240, 0.30);
+  --_text:     var(--aero-text-dark);
+  --_text-sub: var(--aero-text-mid);
+  --_border:   rgba(80, 160, 210, 0.35);
+  backdrop-filter: blur(5px) saturate(0.6);
+}
+.aero-box--glass .aero-box-icon {
+  background:
+    linear-gradient(145deg, rgba(255,255,255,0.80), rgba(255,255,255,0.32)),
+    rgba(100,200,240,0.20);
+  color: var(--aero-text-dark);
+}
+
+/* ── Size variants ────────────────────────────────────────── */
+.aero-box-sm {
+  --_pad:       10px 14px;
+  --_icon-size: 32px;
+  --_font-size: 12px;
+  --_radius:    var(--aero-radius-md);
+  gap: 8px;
+}
+.aero-box-lg {
+  --_pad:       20px 26px;
+  --_icon-size: 56px;
+  --_font-size: 16px;
+  --_radius:    var(--aero-radius-xl);
+  gap: 16px;
+}
+.aero-box-xl {
+  --_pad:       28px 32px;
+  --_icon-size: 72px;
+  --_font-size: 18px;
+  --_radius:    var(--aero-radius-xl);
+  gap: 20px;
+  flex-direction: column;
+  align-items: flex-start;
+  text-align: left;
+}
+.aero-box-xl .aero-box-icon {
+  border-radius: var(--aero-radius-lg);
+}
+
+/* ── Pill / badge ─────────────────────────────────────────── */
+.aero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 3px 10px 3px 6px;
+  border-radius: var(--aero-radius-pill);
+  background:
+    linear-gradient(180deg, rgba(255,255,255,0.60) 0%, rgba(255,255,255,0.16) 100%);
+  border: 1px solid rgba(255,255,255,0.55);
+  font-size: 11px;
+  font-weight: 600;
+  font-family: var(--aero-font-ui);
+  color: var(--aero-text-dark);
+  box-shadow: 0 1px 3px rgba(0,60,120,0.15), inset 0 1px 0 rgba(255,255,255,0.80);
+  letter-spacing: 0.02em;
+  white-space: nowrap;
+}
+.aero-badge-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: currentColor;
+  opacity: 0.7;
+}
+
+/* ── Button ───────────────────────────────────────────────── */
+.aero-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  padding: 9px 20px;
+  border-radius: var(--aero-radius-pill);
+  border: 1px solid rgba(255,255,255,0.55);
+  background:
+    linear-gradient(180deg, rgba(255,255,255,0.62) 0%, rgba(255,255,255,0.10) 50%, rgba(255,255,255,0.00) 100%),
+    linear-gradient(145deg, var(--aero-sky-3), var(--aero-sky-5));
+  color: #fff;
+  font-family: var(--aero-font-ui);
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  cursor: pointer;
+  box-shadow: var(--aero-shadow-sm);
+  text-shadow: 0 1px 2px rgba(0,40,80,0.35);
+  transition: all 0.16s ease;
+  white-space: nowrap;
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+
+}
+.aero-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: var(--aero-shadow-md), var(--aero-glow-sky);
+  filter: brightness(1.08);
+}
+.aero-btn:active {
+  transform: translateY(0);
+  filter: brightness(0.96);
+  transition-duration: 0.07s;
+}
+.aero-btn--aqua {
+  background:
+    linear-gradient(180deg, rgba(255,255,255,0.62) 0%, rgba(255,255,255,0.10) 50%, rgba(255,255,255,0.00) 100%),
+    linear-gradient(145deg, var(--aero-aqua-3), var(--aero-aqua-5));
+}
+.aero-btn--aqua:hover { box-shadow: var(--aero-shadow-md), var(--aero-glow-aqua); }
+
+/* ── Card wrapper for groups of boxes ────────────────────── */
+.aero-panel {
+  position: relative;
+  border-radius: var(--aero-radius-xl);
+  border: 1px solid rgba(255,255,255,0.50);
+  background:
+    linear-gradient(180deg, rgba(255,255,255,0.30) 0%, rgba(255,255,255,0.08) 100%);
+  backdrop-filter: blur(16px) saturate(1.5);
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,0.65),
+    0 4px 24px rgba(0,60,120,0.16),
+    0 10px 48px rgba(0,40,100,0.10);
+  padding: 20px;
+  padding-left: 44px;
+  padding-right: 44px;
+}
+
+.aero-panel-title {
+  font-family: var(--aero-font-heading);
+  font-size: 16px;
+  font-weight: 500;
+  color: var(--aero-text-dark);
+  margin: 0 0 14px;
+  text-shadow: 0 1px 0 rgba(255,255,255,0.80);
+  letter-spacing: -0.01em;
+}
+
+
+/* ============================================================
+   AEROPANEL WITH BOX STYLE — EXTENSION
+   ============================================================ */
+
+/* Herda o estilo base do aero-box quando a classe estiver presente */
+.aero-panel.aero-panel--box {
+  /* Força herdar variáveis e propriedades visuais idênticas ao aero-box */
+  --_bg-start:   var(--aero-sky-3);
+  --_bg-end:     var(--aero-sky-4);
+  --_border:     var(--aero-border-outer);
+  --_text:       var(--aero-text-light);
+  --_text-sub:   var(--aero-text-muted);
+  --_glow:       var(--aero-glow-sky);
+  --_radius:     var(--aero-radius-lg);
+  --_pad:        16px 20px;
+  --_font-size:  14px;
+
+  padding: var(--_pad);
+  border-radius: var(--_radius);
+  border: 1px solid var(--_border);
+  background:
+    linear-gradient(
+      180deg,
+      rgba(255,255,255,0.52) 0%,
+      rgba(255,255,255,0.06) 48%,
+      rgba(255,255,255,0.00) 100%
+    ),
+    linear-gradient(155deg, var(--_bg-start), var(--_bg-end));
+  backdrop-filter: blur(10px) saturate(1.4);
+  -webkit-backdrop-filter: blur(10px) saturate(1.4);
+  box-shadow: var(--aero-shadow-md), inset 0 0 0 1px var(--aero-border-inner);
+  color: var(--_text);
+  cursor: default;
+  transition: none; /* Desativa transições de movimento */
+}
+
+/* Garante o reflexo brilhante por cima (sheen) idêntico ao AeroBox */
+.aero-panel.aero-panel--box::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: linear-gradient(
+    180deg,
+    rgba(255,255,255,0.55) 0%,
+    rgba(255,255,255,0.18) 46%,
+    rgba(255,255,255,0.00) 47%,
+    rgba(255,255,255,0.00) 100%
+  );
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Garante que o conteúdo fique acima do reflexo */
+.aero-panel.aero-panel--box > * { position: relative; z-index: 2; }
+
+/* Mantém o título com a cor correta de acordo com o fundo */
+.aero-panel.aero-panel--box .aero-panel-title {
+  color: var(--_text);
+  text-shadow: 0 1px 3px rgba(0,40,80,0.30);
+}
+
+/* ── Mapeamento das Variantes de Cores do AeroBox para o AeroPanel ── */
+.aero-panel.aero-panel--box.aero-box--sky {
+  --_bg-start: var(--aero-sky-3);
+  --_bg-end:   var(--aero-sky-5);
+  --_glow:     var(--aero-glow-sky);
+}
+.aero-panel.aero-panel--box.aero-box--aqua {
+  --_bg-start: var(--aero-aqua-3);
+  --_bg-end:   var(--aero-aqua-5);
+  --_glow:     var(--aero-glow-aqua);
+  --_border:   rgba(0, 120, 100, 0.25);
+}
+.aero-panel.aero-panel--box.aero-box--forest {
+  --_bg-start: var(--aero-forest-3);
+  --_bg-end:   var(--aero-forest-5);
+  --_border:   rgba(10, 100, 20, 0.22);
+}
+.aero-panel.aero-panel--box.aero-box--aurora {
+  --_bg-start: var(--aero-aurora-start);
+  --_bg-end:   var(--aero-aurora-end);
+  --_border:   rgba(40, 80, 200, 0.22);
+}
+.aero-panel.aero-panel--box.aero-box--glass {
+  --_bg-start: rgba(200, 235, 255, 0.45);
+  --_bg-end:   rgba(160, 210, 240, 0.30);
+  --_text:     var(--aero-text-dark);
+  --_text-sub: var(--aero-text-mid);
+  --_border:   rgba(80, 160, 210, 0.35);
+  backdrop-filter: blur(18px) saturate(1.6);
+}
+.aero-panel.aero-panel--box.aero-box--glass .aero-panel-title {
+  color: var(--aero-text-dark);
+  text-shadow: 0 1px 0 rgba(255,255,255,0.80);
+}
+.aero-panel.aero-panel--box.aero-box--glass2 {
+  --_bg-start: rgba(52, 157, 218, 0.726);
+  --_bg-end:   rgba(108, 184, 155, 0.74);
+  --_text:     var(--aero-text-dark);
+  --_text-sub: var(--aero-text-mid);
+  --_border:   rgba(80, 160, 210, 0.199);
+  backdrop-filter: blur(20px) saturate(1.8);
+}
+.aero-panel.aero-panel--box.aero-box--glass2 .aero-panel-title {
+  color: var(--aero-text-dark);
+  text-shadow: 0 1px 0 rgba(255,255,255,0.80);
+}
+
+/* ── Mapeamento dos Tamanhos ── */
+.aero-panel.aero-panel--box.aero-box-sm {
+  --_pad:       10px 14px;
+  --_font-size: 12px;
+  --_radius:    var(--aero-radius-md);
+}
+.aero-panel.aero-panel--box.aero-box-lg {
+  --_pad:       20px 26px;
+  --_font-size: 16px;
+  --_radius:    var(--aero-radius-xl);
+}
+.aero-panel.aero-panel--box.aero-box-xl {
+  --_pad:       28px 32px;
+  --_font-size: 18px;
+  --_radius:    var(--aero-radius-xl);
+}
+
+.aero-panel-title--dark {
+  color: var(--aero-text-dark) !important;
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.80) !important;
+}
+
+/* Tema Claro (Ideal para quando o painel usa fundos escuros/vibrantes) */
+.aero-panel-title--light {
+  color: var(--aero-text-light) !important;
+  text-shadow: 0 1px 3px rgba(0, 40, 80, 0.45) !important;
+}
+
+
+/* ── Grid helpers ─────────────────────────────────────────── */
+.aero-grid {
+  display: grid;
+  gap: 10px;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+}
+.aero-grid-2 { grid-template-columns: repeat(2, 1fr); }
+.aero-grid-3 { grid-template-columns: repeat(3, 1fr); }
+

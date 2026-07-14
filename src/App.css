@@ -114,13 +114,57 @@ html, body, .aero-scene {
 
 /* ── NavBar ───────────────────────────────────────────────── */
 .portfolio-nav {
+  --nav-form: 0;
   position: fixed;
   top: 20px;
   left: 50%;
   transform: translateX(-50%);
   z-index: 100;
   width: calc(100% - 40px);
-  max-width: 900px;
+  /* No topo (--nav-form: 0) a caixa fica 40% mais larga, acompanhando o
+     vidro invisível; conforme rola, encolhe de volta para 900px. */
+  max-width: calc(900px + (1 - var(--nav-form)) * 360px);
+  transition: max-width 0.25s ease;
+}
+
+/* ── NavBar: funde-se com o fundo no topo, forma o vidro ao rolar ──
+   --nav-form vai de 0 (topo da página) a 1 (rolado), escrito via JS em
+   navbar.jsx. As props de vidro do AeroPanel/glass2 são reescritas aqui
+   interpolando por --nav-form, para que a transição fique contínua e
+   suave em vez de um corte abrupto entre "sem vidro" e "com vidro". */
+.portfolio-nav .aero-panel.aero-panel--box.aero-box--glass2 {
+  transition: box-shadow 0.2s ease, border-color 0.2s ease, backdrop-filter 0.2s ease;
+  background:
+    linear-gradient(
+      180deg,
+      rgba(255,255,255, calc(var(--nav-form) * 0.52)) 0%,
+      rgba(255,255,255, calc(var(--nav-form) * 0.06)) 48%,
+      rgba(255,255,255, 0) 100%
+    ),
+    linear-gradient(
+      155deg,
+      rgba(52,157,218, calc(var(--nav-form) * 0.726)),
+      rgba(108,184,155, calc(var(--nav-form) * 0.74))
+    );
+  border-color: rgba(80,160,210, calc(var(--nav-form) * 0.2));
+  backdrop-filter: blur(calc(var(--nav-form) * 20px)) saturate(calc(1 + var(--nav-form) * 0.8));
+  -webkit-backdrop-filter: blur(calc(var(--nav-form) * 20px)) saturate(calc(1 + var(--nav-form) * 0.8));
+  box-shadow:
+    0 4px 24px rgba(0,60,120, calc(var(--nav-form) * 0.16)),
+    0 10px 48px rgba(0,40,100, calc(var(--nav-form) * 0.10)),
+    inset 0 0 0 1px rgba(255,255,255, calc(var(--nav-form) * 0.35));
+}
+
+/* Reflexo brilhante (sheen) some junto com o vidro no topo da página */
+.portfolio-nav .aero-panel.aero-panel--box::before {
+  opacity: var(--nav-form);
+  transition: opacity 0.2s ease;
+}
+
+/* Os pills de navegação também se fundem levemente no topo */
+.portfolio-nav .portfolio-nav-btn {
+  border-color: rgba(255,255,255, calc(0.08 + var(--nav-form) * 0.32));
+  transition: all 0.18s ease, border-color 0.2s ease;
 }
 
 .portfolio-nav-inner {
@@ -163,8 +207,8 @@ html, body, .aero-scene {
 }
 
 .portfolio-nav-btn:hover {
-  background: rgba(255,255,255,0.45);
-  color: #1a7618;
+  background: rgba(235, 255, 233, 0.45);
+  color: #ffffff;
 }
 
 .portfolio-nav-btn.active {
@@ -249,7 +293,7 @@ html, body, .aero-scene {
   /* Altura maior que 100% para que o translateY do parallax não revele borda inferior */
   height: calc(100% + 460px);
   
-  background-image: url('/assets/bg4.jpg'); 
+  background-image: url('/assets/bg2.jpg'); 
   background-size: cover;
   background-position: center top;
   /* background-attachment: fixed removido — não funciona em position:absolute */

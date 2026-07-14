@@ -264,7 +264,10 @@ html, body, .aero-scene {
 .reveal-visible .aero-panel,
 .reveal-visible .timeline-item,
 .reveal-visible .skill-row {
-  animation: aero-reveal-item 0.75s cubic-bezier(0.16, 1, 0.3, 1) both;
+  /* backwards (não "both"): só segura o estado inicial durante o delay.
+     Terminada a animação, o transform volta ao controle normal da cascata,
+     senão a keyframe fica "presa" no transform e trava o :hover do aero-box. */
+  animation: aero-reveal-item 0.75s cubic-bezier(0.16, 1, 0.3, 1) backwards;
 }
 
 .reveal-visible .sobre-grid > *:nth-child(1) { animation-delay: 0.02s; }
@@ -579,16 +582,103 @@ html, body, .aero-scene {
 }
 
 /* ── Projetos Section ─────────────────────────────────────── */
+.projetos-section {
+  padding-top: 70px;
+  padding-bottom: 40px;
+}
+
+.projetos-section .section-header {
+  margin-bottom: 28px;
+}
+
 .filtros-bar {
   display: flex;
   gap: 10px;
   flex-wrap: wrap;
   justify-content: center;
-  margin-bottom: 30px;
+  margin-bottom: 24px;
 }
 
-.projetos-grid {
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)) !important;
+.projeto-destaque-panel {
+  /* !important necessário: .aero-box-xl (aplicada via size="xl") já define
+     flex-direction: column / align-items: flex-start / gap, e tem a mesma
+     especificidade de classe única — sem isso o painel empilha errado. */
+  display: flex !important;
+  flex-direction: row !important;
+  align-items: stretch !important;
+  gap: 28px !important;
+  animation: projeto-swap-in 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.projeto-destaque-imagem {
+  flex: 0 0 42%;
+  min-height: 380px;
+  border-radius: var(--aero-radius-lg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  position: relative;
+  border: 1px solid rgba(255,255,255,0.55);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.55), 0 4px 18px rgba(0,60,110,0.20);
+  background:
+    linear-gradient(160deg, rgba(255,255,255,0.35), rgba(255,255,255,0.05)),
+    linear-gradient(145deg, var(--_bg-start, var(--aero-sky-3)), var(--_bg-end, var(--aero-sky-5)));
+}
+
+.projeto-destaque-imagem img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.projeto-destaque-icone {
+  font-size: 88px;
+  filter: drop-shadow(0 6px 14px rgba(0,40,80,0.30));
+}
+
+.projeto-destaque-corpo {
+  flex: 1 1 0%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 14px;
+  min-width: 0;
+}
+
+.projeto-destaque-cat {
+  align-self: flex-start;
+}
+
+.projeto-destaque-titulo {
+  margin: 0;
+  font-family: var(--aero-font-heading);
+  font-size: 1.6rem;
+  color: var(--_text, var(--aero-text-light));
+  text-shadow: 0 1px 3px rgba(0,40,80,0.30);
+}
+
+.projeto-destaque-desc {
+  margin: 0;
+  font-size: 0.98rem;
+  line-height: 1.55;
+  color: var(--_text-sub, var(--aero-text-muted));
+}
+
+.projeto-destaque-tags {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+@keyframes projeto-swap-in {
+  from { opacity: 0; transform: translateY(14px) scale(0.985); }
+  to   { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .projeto-destaque-panel { animation: none; }
 }
 
 /* ── Skills Section ───────────────────────────────────────── */
@@ -780,6 +870,8 @@ html, body, .aero-scene {
   .sobre-grid { grid-template-columns: 1fr; }
   .skills-layout { grid-template-columns: 1fr; }
   .contato-layout { grid-template-columns: 1fr; }
+  .projeto-destaque-panel { flex-direction: column; }
+  .projeto-destaque-imagem { flex-basis: auto; min-height: 160px; }
   .portfolio-nav-links { display: none; }
   .portfolio-section { padding: 60px 20px; }
   .section-title { font-size: 1.9rem; }

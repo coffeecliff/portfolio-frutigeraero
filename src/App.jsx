@@ -179,12 +179,6 @@ function SobreSection() {
 
 // ── Seção Projetos ───────────────────────────────────────────
 function ProjetosSection() {
-  const [filtro, setFiltro] = useState('Todos')
-  const [alturaFixa, setAlturaFixa] = useState('auto')
-  const gridRef = useRef(null)
-  
-  const categorias = ['Todos', 'Web App', 'Mobile', '3D / Visual', 'OSS']
-
   const projetos = [
     { nome: 'AeroUI Kit', desc: 'Design system completo no estilo Frutiger Aero para React.', cat: 'OSS', ic: '💎', variant: 'aurora', tech: ['React', 'CSS', 'Figma'] },
     { nome: 'CloudSync Dashboard', desc: 'Painel de gerenciamento de arquivos com sincronização em tempo real.', cat: 'Web App', ic: '☁️', variant: 'sky', tech: ['React', 'Node.js', 'Socket.io'] },
@@ -194,18 +188,8 @@ function ProjetosSection() {
     { nome: 'PixelGrid', desc: 'Editor colaborativo de pixel art no browser com multiplayer.', cat: 'Web App', ic: '🎨', variant: 'aurora', tech: ['Canvas', 'WebRTC', 'React'] },
   ]
 
-  // Monitora o tamanho do grid quando ele está com todos os projetos (estado inicial)
-  useEffect(() => {
-    if (gridRef.current && filtro === 'Todos') {
-      // Adiciona uma pequena folga se necessário, ou usa a altura exata
-      const height = gridRef.current.getBoundingClientRect().height
-      if (height > 0) {
-        setAlturaFixa(`${height}px`)
-      }
-    }
-  }, []) // Executa apenas uma vez ao montar o componente para pegar a altura máxima real
-
-  const filtrados = filtro === 'Todos' ? projetos : projetos.filter(p => p.cat === filtro)
+  const [selecionado, setSelecionado] = useState(projetos[0].nome)
+  const ativo = projetos.find(p => p.nome === selecionado) ?? projetos[0]
 
   return (
     <section className="portfolio-section projetos-section">
@@ -215,41 +199,42 @@ function ProjetosSection() {
       </div>
 
       <div className="filtros-bar">
-        {categorias.map(cat => (
+        {projetos.map(p => (
           <AeroBtn
-            key={cat}
-            variant={filtro === cat ? 'sky' : 'glass'}
-            onClick={() => setFiltro(cat)}
+            key={p.nome}
+            variant={selecionado === p.nome ? 'sky' : 'glass'}
+            onClick={() => setSelecionado(p.nome)}
           >
-            {cat}
+            <span style={{ marginRight: 6 }}>{p.ic}</span>{p.nome}
           </AeroBtn>
         ))}
       </div>
 
-      {/* 🌟 Container wrapper com altura travada para evitar o solavanco da página */}
-      <div style={{ minHeight: alturaFixa, display: 'flex', flexDirection: 'column' }}>
-        <div ref={gridRef}>
-          <AeroGrid cols="auto" gap="20px" className="projetos-grid">
-            {filtrados.map(p => (
-              <AeroBox
-                key={p.nome}
-                variant={p.variant}
-                size="lg"
-                label={p.nome}
-                sub={p.desc}
-                icon={<span style={{ fontSize: 26 }}>{p.ic}</span>}
-              >
-                <div style={{ marginTop: 10, display: 'flex', gap: 6, flexWrap: 'wrap' }}>
-                  {p.tech.map(t => <span key={t} className="tech-tag tech-tag--dark">{t}</span>)}
-                </div>
-                <div style={{ marginTop: 12, display: 'flex', gap: 8 }}>
-                  <AeroBtn variant="glass">Ver Projeto →</AeroBtn>
-                </div>
-              </AeroBox>
-            ))}
-          </AeroGrid>
+      <AeroPanel
+        key={ativo.nome}
+        useBoxStyle
+        variant={ativo.variant}
+        size="xl"
+        className="projeto-destaque-panel"
+      >
+        <div className={`projeto-destaque-imagem projeto-destaque-imagem--${ativo.variant}`}>
+          {ativo.img ? (
+            <img src={ativo.img} alt={ativo.nome} />
+          ) : (
+            <span className="projeto-destaque-icone">{ativo.ic}</span>
+          )}
         </div>
-      </div>
+
+        <div className="projeto-destaque-corpo">
+          <span className="tech-tag tech-tag--dark projeto-destaque-cat">{ativo.cat}</span>
+          <h3 className="projeto-destaque-titulo">{ativo.nome}</h3>
+          <p className="projeto-destaque-desc">{ativo.desc}</p>
+          <div className="projeto-destaque-tags">
+            {ativo.tech.map(t => <span key={t} className="tech-tag tech-tag--dark">{t}</span>)}
+          </div>
+          <AeroBtn variant="glass">Ver Projeto →</AeroBtn>
+        </div>
+      </AeroPanel>
     </section>
   )
 }

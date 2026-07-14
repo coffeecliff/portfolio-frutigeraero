@@ -459,6 +459,25 @@ export default function App() {
     return () => observer.disconnect()
   }, [])
 
+  // ── Reveal suave ao rolar a página (dispara uma vez por seção) ──
+  useEffect(() => {
+    const revealObserver = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.add('reveal-visible')
+          revealObserver.unobserve(e.target)
+        }
+      })
+    }, { threshold: 0.15, rootMargin: '0px 0px -10% 0px' })
+
+    Object.entries(sectionRefs).forEach(([id, ref]) => {
+      if (ref.current && id !== 'Hero') {
+        revealObserver.observe(ref.current)
+      }
+    })
+    return () => revealObserver.disconnect()
+  }, [])
+
   return (
     <body>
       <div className="portfolio-root">
@@ -468,10 +487,10 @@ export default function App() {
 
         <main className="portfolio-main">
           <div ref={heroRef}><HeroSection /></div>
-          <div ref={sobreRef}><SobreSection /></div>
-          <div ref={projetosRef}><ProjetosSection /></div>
-          <div ref={skillsRef}><SkillsSection /></div>
-          <div ref={contatoRef}><ContatoSection /></div>
+          <div ref={sobreRef} className="reveal"><SobreSection /></div>
+          <div ref={projetosRef} className="reveal"><ProjetosSection /></div>
+          <div ref={skillsRef} className="reveal"><SkillsSection /></div>
+          <div ref={contatoRef} className="reveal"><ContatoSection /></div>
 
           <BallUserViewer3D top='1%' left='87%' color='#6fac36' />
           <BallUserViewer3D top='50%' left='87%' color='#d3b634' />

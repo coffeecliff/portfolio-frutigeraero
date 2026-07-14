@@ -123,7 +123,7 @@ html, body, .aero-scene {
   width: calc(100% - 40px);
   /* No topo (--nav-form: 0) a caixa fica 40% mais larga, acompanhando o
      vidro invisível; conforme rola, encolhe de volta para 900px. */
-  max-width: calc(900px + (1 - var(--nav-form)) * 360px);
+  max-width: calc(1050px + (1 - var(--nav-form)) * 100px);
   transition: max-width 0.25s ease;
 }
 
@@ -241,6 +241,72 @@ html, body, .aero-scene {
   display: flex;
   flex-direction: column;
   justify-content: center;
+}
+
+/* ── Reveal suave ao rolar a página ──────────────────────────
+   Cada seção nasce translúcida/deslocada e "flutua" para o lugar
+   assim que entra na viewport pela primeira vez; os cartões/itens
+   internos entram em cascata para reforçar a sensação de profundidade. */
+.reveal {
+  opacity: 0;
+  transform: translateY(56px);
+  transition: opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
+}
+
+.reveal-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.reveal-visible .aero-box,
+.reveal-visible .aero-panel,
+.reveal-visible .timeline-item,
+.reveal-visible .skill-row {
+  animation: aero-reveal-item 0.75s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.reveal-visible .sobre-grid > *:nth-child(1) { animation-delay: 0.02s; }
+.reveal-visible .sobre-grid > *:nth-child(2) { animation-delay: 0.10s; }
+.reveal-visible .sobre-grid > *:nth-child(3) { animation-delay: 0.18s; }
+
+.reveal-visible .aero-box:nth-child(1) { animation-delay: 0.04s; }
+.reveal-visible .aero-box:nth-child(2) { animation-delay: 0.11s; }
+.reveal-visible .aero-box:nth-child(3) { animation-delay: 0.18s; }
+.reveal-visible .aero-box:nth-child(4) { animation-delay: 0.25s; }
+.reveal-visible .aero-box:nth-child(5) { animation-delay: 0.32s; }
+.reveal-visible .aero-box:nth-child(6) { animation-delay: 0.39s; }
+
+.reveal-visible .timeline-item:nth-child(1) { animation-delay: 0.05s; }
+.reveal-visible .timeline-item:nth-child(2) { animation-delay: 0.15s; }
+.reveal-visible .timeline-item:nth-child(3) { animation-delay: 0.25s; }
+.reveal-visible .timeline-item:nth-child(4) { animation-delay: 0.35s; }
+
+.reveal-visible .skill-row:nth-child(1) { animation-delay: 0.04s; }
+.reveal-visible .skill-row:nth-child(2) { animation-delay: 0.11s; }
+.reveal-visible .skill-row:nth-child(3) { animation-delay: 0.18s; }
+.reveal-visible .skill-row:nth-child(4) { animation-delay: 0.25s; }
+.reveal-visible .skill-row:nth-child(5) { animation-delay: 0.32s; }
+.reveal-visible .skill-row:nth-child(6) { animation-delay: 0.39s; }
+
+@keyframes aero-reveal-item {
+  from { opacity: 0; transform: translateY(26px) scale(0.97); }
+  to   { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+  .reveal-visible .aero-box,
+  .reveal-visible .aero-panel,
+  .reveal-visible .timeline-item,
+  .reveal-visible .skill-row {
+    animation: none;
+  }
 }
 
 .section-header {

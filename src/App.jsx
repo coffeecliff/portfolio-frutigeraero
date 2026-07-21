@@ -154,24 +154,127 @@ function SobreSection() {
           <AeroBox variant="aqua" label="Formação" sub="Ciência da Computação" icon={<span>🎓</span>}/>
           <AeroBox variant="aqua" label="Idiomas" sub="PT-BR" icon={<span>🌐</span>} />
         </div>
+      </div>
+    </section>
+  )
+}
 
-        <AeroPanel title="Linha do Tempo" className="sobre-timeline-panel">
-          {[
-            { ano: '2024', ev: 'Fundou dev.studio como freelancer', ic: '🌟' },
-            { ano: '2023', ev: 'Senior Dev na Fintech XYZ', ic: '📈' },
-            { ano: '2022', ev: 'Contribuiu para 3 open-source libs', ic: '🔧' },
-            { ano: '2021', ev: 'Primeiro emprego como dev júnior', ic: '🎯' },
-          ].map(item => (
-            <div key={item.ano} className="timeline-item">
-              <span className="timeline-icon">{item.ic}</span>
-              <div className="timeline-content">
-                <span className="timeline-year">{item.ano}</span>
-                <span className="timeline-event">{item.ev}</span>
-              </div>
+// ── Seção Trajetória (linha do tempo) ─────────────────────────
+function TrajetoriaSection() {
+  const eventos = [
+    {
+      ano: '2024', ic: '🌟', variant: 'aurora', titulo: 'Fundou o dev.studio',
+      resumo: 'Passou a atuar como freelancer full-time, escolhendo os próprios projetos.',
+      detalhe: 'Estruturou um estúdio solo focado em interfaces imersivas e design systems, atendendo clientes de fintech a portfólios criativos, sempre unindo estética e performance.',
+    },
+    {
+      ano: '2023', ic: '📈', variant: 'sky', titulo: 'Senior Dev na Fintech XYZ',
+      resumo: 'Liderou a reconstrução do dashboard principal em React + TypeScript.',
+      detalhe: 'Conduziu a migração de uma stack legada para um design system próprio, reduzindo o tempo de carregamento em 40% e mentorando dois desenvolvedores júnior no processo.',
+    },
+    {
+      ano: '2022', ic: '🔧', variant: 'forest', titulo: '3 libs open-source',
+      resumo: 'Contribuiu ativamente para bibliotecas de UI e animação usadas pela comunidade.',
+      detalhe: 'Publicou componentes de animação baseados em CSS custom properties e IntersectionObserver, hoje usados em pequenos projetos e protótipos de outros devs.',
+    },
+    {
+      ano: '2021', ic: '🎯', variant: 'aqua', titulo: 'Primeiro emprego como dev júnior',
+      resumo: 'Entrou no mercado construindo interfaces para um produto SaaS de gestão.',
+      detalhe: 'Primeiro contato com produção: aprendeu Git, revisão de código e a trabalhar em squad ágil, plantando a base do interesse por design e experiência do usuário.',
+    },
+    {
+      ano: '2020', ic: '🎓', variant: 'aurora', titulo: 'Início em Ciência da Computação',
+      resumo: 'Começou a graduação e os primeiros projetos pessoais em front-end.',
+      detalhe: 'Entre trabalhos da faculdade e projetos pessoais, descobriu o CSS avançado e o Three.js — o gatilho para a estética que viria a definir seus projetos futuros.',
+    },
+  ]
+
+  const trackRef = useRef(null)
+  const nodeRefs = useRef([])
+  const [activeAno, setActiveAno] = useState(eventos[0].ano)
+  const [openAno, setOpenAno] = useState(eventos[0].ano)
+
+  // Preenche a linha central conforme o meio da viewport avança pela trilha
+  useEffect(() => {
+    const handleScroll = () => {
+      const track = trackRef.current
+      if (!track) return
+      const rect = track.getBoundingClientRect()
+      const progress = (window.innerHeight / 2 - rect.top) / rect.height
+      track.style.setProperty('--tl-progress', Math.min(Math.max(progress, 0), 1).toFixed(3))
+    }
+    handleScroll()
+    window.addEventListener('scroll', handleScroll, { passive: true })
+    return () => window.removeEventListener('scroll', handleScroll)
+  }, [])
+
+  // Destaca o marco mais próximo do centro da tela
+  useEffect(() => {
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          const ano = e.target.getAttribute('data-ano')
+          if (ano) setActiveAno(ano)
+        }
+      })
+    }, { threshold: 0, rootMargin: '-46% 0px -46% 0px' })
+
+    nodeRefs.current.forEach(el => el && observer.observe(el))
+    return () => observer.disconnect()
+  }, [])
+
+  return (
+    <section className="portfolio-section trajetoria-section">
+      <div className="section-header">
+        <span className="section-eyebrow">Como cheguei até aqui</span>
+        <h2 className="section-title">Linha do Tempo</h2>
+      </div>
+
+      <div className="timeline-track" ref={trackRef}>
+        <div className="timeline-line">
+          <div className="timeline-line-fill" />
+        </div>
+
+        {eventos.map((ev, i) => {
+          const isOpen = openAno === ev.ano
+          const isActive = activeAno === ev.ano
+          return (
+            <div
+              key={ev.ano}
+              data-ano={ev.ano}
+              ref={el => (nodeRefs.current[i] = el)}
+              className={`timeline-node timeline-node--${i % 2 === 0 ? 'left' : 'right'} ${isActive ? 'timeline-node--active' : ''}`}
+            >
+              <button
+                type="button"
+                className={`timeline-node-dot timeline-node-dot--${ev.variant}`}
+                aria-label={`${ev.ano}: ${ev.titulo}`}
+                onClick={() => setOpenAno(isOpen ? null : ev.ano)}
+              >
+                <span>{ev.ic}</span>
+              </button>
+
+              <AeroPanel useBoxStyle variant={ev.variant} className="timeline-node-card">
+                <button
+                  type="button"
+                  className="timeline-card-head"
+                  onClick={() => setOpenAno(isOpen ? null : ev.ano)}
+                  aria-expanded={isOpen}
+                >
+                  <span className="timeline-card-year">{ev.ano}</span>
+                  <span className="timeline-card-title">{ev.titulo}</span>
+                  <span className="timeline-card-arrow">{isOpen ? '−' : '+'}</span>
+                </button>
+                <p className="timeline-card-resumo">{ev.resumo}</p>
+                <div className={`timeline-card-detalhe ${isOpen ? 'is-open' : ''}`}>
+                  <div className="timeline-card-detalhe-inner">
+                    <p>{ev.detalhe}</p>
+                  </div>
+                </div>
+              </AeroPanel>
             </div>
-          ))}
-        </AeroPanel>
-        
+          )
+        })}
       </div>
     </section>
   )
@@ -396,6 +499,7 @@ export default function App() {
 
   const heroRef = useRef(null)
   const sobreRef = useRef(null)
+  const trajetoriaRef = useRef(null)
   const projetosRef = useRef(null)
   const skillsRef = useRef(null)
   const contatoRef = useRef(null)
@@ -403,6 +507,7 @@ export default function App() {
   const sectionRefs = {
     Hero: heroRef,
     Sobre: sobreRef,
+    Trajetória: trajetoriaRef,
     Projetos: projetosRef,
     Skills: skillsRef,
     Contato: contatoRef,
@@ -473,6 +578,7 @@ export default function App() {
         <main className="portfolio-main">
           <div ref={heroRef}><HeroSection /></div>
           <div ref={sobreRef} className="reveal"><SobreSection /></div>
+          <div ref={trajetoriaRef} className="reveal"><TrajetoriaSection /></div>
           <div ref={projetosRef} className="reveal"><ProjetosSection /></div>
           <div ref={skillsRef} className="reveal"><SkillsSection /></div>
           <div ref={contatoRef} className="reveal"><ContatoSection /></div>

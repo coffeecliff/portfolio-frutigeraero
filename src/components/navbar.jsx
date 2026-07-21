@@ -2,7 +2,7 @@ import { useEffect, useRef } from 'react'
 import { AeroPanel } from './aeroBox'
 
 export default function NavBar({ activeSection, onNav }) {
-    const sections = ['Hero', 'Sobre', 'Projetos', 'Skills', 'Contato']
+    const sections = ['Hero', 'Sobre', 'Trajetória', 'Projetos', 'Skills', 'Contato']
     const navRef = useRef(null)
 
     // No topo, a navbar funde-se com o fundo; conforme o usuário rola a

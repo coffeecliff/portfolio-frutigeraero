@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from 'react'
+import { useLenis } from 'lenis/react'
 import { AeroBox, AeroPanel, AeroGrid, AeroBtn } from './components/aeroBox'
 // import { UserViewer3D } from './components/models_viewers/UserViewer3D'
 // import { IdogViewer3D } from './components/IdogViewer3D'
@@ -513,22 +514,25 @@ export default function App() {
     Contato: contatoRef,
   }
 
+  const lenis = useLenis()
+
   const navTo = (section) => {
-  setActiveSection(section)
-  
-  const element = sectionRefs[section]?.current
-  if (element) {
+    setActiveSection(section)
+
+    const element = sectionRefs[section]?.current
+    if (!element) return
+
     // Defina o valor do seu offset aqui (ex: 100px)
     const offset = 36
-    const elementPosition = element.getBoundingClientRect().top
-    const offsetPosition = elementPosition + window.scrollY - offset
 
-    window.scrollTo({
-      top: offsetPosition,
-      behavior: 'smooth'
-    })
+    if (lenis) {
+      lenis.scrollTo(element, { offset: -offset, duration: 1.2 })
+    } else {
+      const elementPosition = element.getBoundingClientRect().top
+      const offsetPosition = elementPosition + window.scrollY - offset
+      window.scrollTo({ top: offsetPosition, behavior: 'smooth' })
+    }
   }
-}
 
   useEffect(() => {
     const observer = new IntersectionObserver(entries => {

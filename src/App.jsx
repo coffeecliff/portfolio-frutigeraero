@@ -163,30 +163,35 @@ function SobreSection() {
 // ── Seção Trajetória (linha do tempo) ─────────────────────────
 function TrajetoriaSection() {
   const eventos = [
-    {
-      ano: '2024', ic: '🌟', variant: 'aurora', titulo: 'Fundou o dev.studio',
-      resumo: 'Passou a atuar como freelancer full-time, escolhendo os próprios projetos.',
-      detalhe: 'Estruturou um estúdio solo focado em interfaces imersivas e design systems, atendendo clientes de fintech a portfólios criativos, sempre unindo estética e performance.',
-    },
-    {
-      ano: '2023', ic: '📈', variant: 'sky', titulo: 'Senior Dev na Fintech XYZ',
-      resumo: 'Liderou a reconstrução do dashboard principal em React + TypeScript.',
-      detalhe: 'Conduziu a migração de uma stack legada para um design system próprio, reduzindo o tempo de carregamento em 40% e mentorando dois desenvolvedores júnior no processo.',
-    },
-    {
-      ano: '2022', ic: '🔧', variant: 'forest', titulo: '3 libs open-source',
+      {
+      ano: '2022', ic: '🖥️', variant: 'forest', titulo: '3 libs open-source',
       resumo: 'Contribuiu ativamente para bibliotecas de UI e animação usadas pela comunidade.',
       detalhe: 'Publicou componentes de animação baseados em CSS custom properties e IntersectionObserver, hoje usados em pequenos projetos e protótipos de outros devs.',
     },
     {
-      ano: '2021', ic: '🎯', variant: 'aqua', titulo: 'Primeiro emprego como dev júnior',
+      ano: '2023', ic: '🖥️', variant: 'sky', titulo: 'Senior Dev na Fintech XYZ',
+      resumo: 'Liderou a reconstrução do dashboard principal em React + TypeScript.',
+      detalhe: 'Conduziu a migração de uma stack legada para um design system próprio, reduzindo o tempo de carregamento em 40% e mentorando dois desenvolvedores júnior no processo.',
+    },
+    {
+      ano: '2024', ic: '🖥️', variant: 'forest', titulo: '3 libs open-source',
+      resumo: 'Contribuiu ativamente para bibliotecas de UI e animação usadas pela comunidade.',
+      detalhe: 'Publicou componentes de animação baseados em CSS custom properties e IntersectionObserver, hoje usados em pequenos projetos e protótipos de outros devs.',
+    },
+    {
+      ano: '2025', ic: '🖥️', variant: 'sky', titulo: 'Primeiro emprego como dev júnior',
       resumo: 'Entrou no mercado construindo interfaces para um produto SaaS de gestão.',
       detalhe: 'Primeiro contato com produção: aprendeu Git, revisão de código e a trabalhar em squad ágil, plantando a base do interesse por design e experiência do usuário.',
     },
     {
-      ano: '2020', ic: '🎓', variant: 'aurora', titulo: 'Início em Ciência da Computação',
-      resumo: 'Começou a graduação e os primeiros projetos pessoais em front-end.',
-      detalhe: 'Entre trabalhos da faculdade e projetos pessoais, descobriu o CSS avançado e o Three.js — o gatilho para a estética que viria a definir seus projetos futuros.',
+      ano: '2026', ic: '🖥️', variant: 'forest', titulo: 'Primeiro emprego como dev júnior',
+      resumo: 'Entrou no mercado construindo interfaces para um produto SaaS de gestão.',
+      detalhe: 'Primeiro contato com produção: aprendeu Git, revisão de código e a trabalhar em squad ágil, plantando a base do interesse por design e experiência do usuário.',
+    },
+    {
+      ano: '2026', ic: '🖥️', variant: 'sky', titulo: 'Primeiro emprego como dev júnior',
+      resumo: 'Entrou no mercado construindo interfaces para um produto SaaS de gestão.',
+      detalhe: 'Primeiro contato com produção: aprendeu Git, revisão de código e a trabalhar em squad ágil, plantando a base do interesse por design e experiência do usuário.',
     },
   ]
 

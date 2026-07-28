@@ -178,10 +178,14 @@ html, body, .aero-scene {
   font-family: 'Exo 2', sans-serif;
   font-weight: 600;
   font-size: 1.1rem;
-  color: #ffffff;
-  text-shadow: 0 1px 0 rgba(192, 233, 229, 0.8);
+  /* No topo (--nav-form: 0), sem vidro por trás, o texto escurece para não
+     se mesclar com o fundo claro da página; ao rolar, clareia de volta
+     para branco conforme o vidro se forma. */
+  color: color-mix(in srgb, #003354 calc((1 - var(--nav-form)) * 100%), #ffffff calc(var(--nav-form) * 100%));
+  text-shadow: 0 1px 0 rgba(192, 233, 229, calc(var(--nav-form) * 0.8));
   letter-spacing: -0.01em;
   white-space: nowrap;
+  transition: color 0.2s ease, text-shadow 0.2s ease;
 }
 
 .portfolio-nav-links {
@@ -197,18 +201,19 @@ html, body, .aero-scene {
   font-family: 'Nunito', sans-serif;
   font-size: 0.9rem;
   font-weight: 900;
-  color: #fff;
+  /* Mesma lógica da logo: escurece no topo (sem vidro), clareia ao rolar. */
+  color: color-mix(in srgb, #123049 calc((1 - var(--nav-form)) * 100%), #ffffff calc(var(--nav-form) * 100%));
   cursor: pointer;
-  transition: all 0.18s ease;
+  transition: all 0.18s ease, color 0.2s ease;
   letter-spacing: 0.01em;
   border: 1px solid rgba(255,255,255,0.40);
-  text-shadow: 0 1px 0 rgba(192, 233, 229, 0.8);
+  text-shadow: 0 1px 0 rgba(192, 233, 229, calc(var(--nav-form) * 0.8));
 
 }
 
 .portfolio-nav-btn:hover {
   background: rgba(235, 255, 233, 0.45);
-  color: #ffffff;
+  color: color-mix(in srgb, #123049 calc((1 - var(--nav-form)) * 100%), #ffffff calc(var(--nav-form) * 100%));
 }
 
 .portfolio-nav-btn.active {

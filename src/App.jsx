@@ -164,32 +164,32 @@ function SobreSection() {
 function TrajetoriaSection() {
   const eventos = [
       {
-      ano: '2022', ic: '🖥️', variant: 'forest', titulo: '3 libs open-source',
+      id: '2022-libs', ano: '2022', ic: '🖥️', variant: 'forest', titulo: '3 libs open-source',
       resumo: 'Contribuiu ativamente para bibliotecas de UI e animação usadas pela comunidade.',
       detalhe: 'Publicou componentes de animação baseados em CSS custom properties e IntersectionObserver, hoje usados em pequenos projetos e protótipos de outros devs.',
     },
     {
-      ano: '2023', ic: '🖥️', variant: 'sky', titulo: 'Senior Dev na Fintech XYZ',
+      id: '2023-senior', ano: '2023', ic: '🖥️', variant: 'sky', titulo: 'Senior Dev na Fintech XYZ',
       resumo: 'Liderou a reconstrução do dashboard principal em React + TypeScript.',
       detalhe: 'Conduziu a migração de uma stack legada para um design system próprio, reduzindo o tempo de carregamento em 40% e mentorando dois desenvolvedores júnior no processo.',
     },
     {
-      ano: '2024', ic: '🖥️', variant: 'forest', titulo: '3 libs open-source',
+      id: '2024-libs', ano: '2024', ic: '🖥️', variant: 'forest', titulo: '3 libs open-source',
       resumo: 'Contribuiu ativamente para bibliotecas de UI e animação usadas pela comunidade.',
       detalhe: 'Publicou componentes de animação baseados em CSS custom properties e IntersectionObserver, hoje usados em pequenos projetos e protótipos de outros devs.',
     },
     {
-      ano: '2025', ic: '🖥️', variant: 'sky', titulo: 'Primeiro emprego como dev júnior',
+      id: '2025-junior', ano: '2025', ic: '🖥️', variant: 'sky', titulo: 'Primeiro emprego como dev júnior',
       resumo: 'Entrou no mercado construindo interfaces para um produto SaaS de gestão.',
       detalhe: 'Primeiro contato com produção: aprendeu Git, revisão de código e a trabalhar em squad ágil, plantando a base do interesse por design e experiência do usuário.',
     },
     {
-      ano: '2026', ic: '🖥️', variant: 'forest', titulo: 'Primeiro emprego como dev júnior',
+      id: '2026-junior-a', ano: '2026', ic: '🖥️', variant: 'forest', titulo: 'Primeiro emprego como dev júnior',
       resumo: 'Entrou no mercado construindo interfaces para um produto SaaS de gestão.',
       detalhe: 'Primeiro contato com produção: aprendeu Git, revisão de código e a trabalhar em squad ágil, plantando a base do interesse por design e experiência do usuário.',
     },
     {
-      ano: '2026', ic: '🖥️', variant: 'sky', titulo: 'Primeiro emprego como dev júnior',
+      id: '2026-junior-b', ano: '2026', ic: '🖥️', variant: 'sky', titulo: 'Primeiro emprego como dev júnior',
       resumo: 'Entrou no mercado construindo interfaces para um produto SaaS de gestão.',
       detalhe: 'Primeiro contato com produção: aprendeu Git, revisão de código e a trabalhar em squad ágil, plantando a base do interesse por design e experiência do usuário.',
     },
@@ -197,8 +197,8 @@ function TrajetoriaSection() {
 
   const trackRef = useRef(null)
   const nodeRefs = useRef([])
-  const [activeAno, setActiveAno] = useState(eventos[0].ano)
-  const [openAno, setOpenAno] = useState(eventos[0].ano)
+  const [activeId, setActiveId] = useState(eventos[0].id)
+  const [openId, setOpenId] = useState(eventos[0].id)
 
   // Preenche a linha central conforme o meio da viewport avança pela trilha
   useEffect(() => {
@@ -219,8 +219,8 @@ function TrajetoriaSection() {
     const observer = new IntersectionObserver(entries => {
       entries.forEach(e => {
         if (e.isIntersecting) {
-          const ano = e.target.getAttribute('data-ano')
-          if (ano) setActiveAno(ano)
+          const id = e.target.getAttribute('data-id')
+          if (id) setActiveId(id)
         }
       })
     }, { threshold: 0, rootMargin: '-46% 0px -46% 0px' })
@@ -242,12 +242,12 @@ function TrajetoriaSection() {
         </div>
 
         {eventos.map((ev, i) => {
-          const isOpen = openAno === ev.ano
-          const isActive = activeAno === ev.ano
+          const isOpen = openId === ev.id
+          const isActive = activeId === ev.id
           return (
             <div
-              key={ev.ano}
-              data-ano={ev.ano}
+              key={ev.id}
+              data-id={ev.id}
               ref={el => (nodeRefs.current[i] = el)}
               className={`timeline-node timeline-node--${i % 2 === 0 ? 'left' : 'right'} ${isActive ? 'timeline-node--active' : ''}`}
             >
@@ -255,7 +255,7 @@ function TrajetoriaSection() {
                 type="button"
                 className={`timeline-node-dot timeline-node-dot--${ev.variant}`}
                 aria-label={`${ev.ano}: ${ev.titulo}`}
-                onClick={() => setOpenAno(isOpen ? null : ev.ano)}
+                onClick={() => setOpenId(isOpen ? null : ev.id)}
               >
                 <span>{ev.ic}</span>
               </button>
@@ -264,7 +264,7 @@ function TrajetoriaSection() {
                 <button
                   type="button"
                   className="timeline-card-head"
-                  onClick={() => setOpenAno(isOpen ? null : ev.ano)}
+                  onClick={() => setOpenId(isOpen ? null : ev.id)}
                   aria-expanded={isOpen}
                 >
                   <span className="timeline-card-year">{ev.ano}</span>

@@ -363,7 +363,7 @@ html, body, .aero-scene {
   /* Altura maior que 100% para que o translateY do parallax não revele borda inferior */
   height: calc(100% + 460px);
   
-  background-image: url('/assets/bg2.jpg'); 
+  background-image: url('/assets/white.png'); 
   background-size: cover;
   background-position: center top;
   /* background-attachment: fixed removido — não funciona em position:absolute */
@@ -421,7 +421,7 @@ html, body, .aero-scene {
 }
 
 .hero-name {
-  background: linear-gradient(135deg, #abffa3, #80ffb1);
+  background: linear-gradient(135deg, rgba(10, 183, 206, 0.938), #069e40);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -430,14 +430,14 @@ html, body, .aero-scene {
 .hero-subtitle {
   font-size: 1.7rem;
   font-weight: 600;
-  color: #a8ffa5;
+  color: rgba(10, 183, 206, 0.938);
   text-shadow: 0 1px 3px rgba(255,255,255,0.5);
   min-height: 2.2rem;
   margin: 0;
 }
 
 .hero-type {
-  color: #a8ffa5;
+  color: rgba(10, 183, 206, 0.938);
 }
 
 .cursor {
@@ -448,7 +448,7 @@ html, body, .aero-scene {
 
 .hero-desc {
   font-size: 1.4rem;
-  color: #e4e4e4;
+  color: rgba(15, 137, 153, 0.938);
   line-height: 1.7;
   text-shadow: 0 1px 2px rgba(255,255,255,0.4);
   max-width: 480px;
@@ -478,7 +478,7 @@ html, body, .aero-scene {
 .hero-scroll-hint {
   text-align: center;
   margin-top: 40px;
-  color: rgba(255, 255, 255, 0.938);
+  color: rgba(10, 183, 206, 0.938);
   font-size: 1rem;
   letter-spacing: 0.3em;
   animation: float 2.5s ease-in-out infinite;
@@ -556,7 +556,7 @@ html, body, .aero-scene {
   left: 0;
   right: 0;
   height: calc(var(--tl-progress, 0) * 100%);
-  background: linear-gradient(180deg, #7fe8ff, #8affc0 55%, #c39bff);
+  background: linear-gradient(180deg, #7fe8ff, #8affc0 55%, #9bbeff);
   box-shadow: 0 0 14px rgba(127, 232, 255, 0.65);
   transition: height 0.12s linear;
 }

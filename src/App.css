@@ -367,10 +367,7 @@ html, body, .aero-scene {
   /* Altura maior que 100% para que o translateY do parallax não revele borda inferior */
   height: calc(100% + 460px);
   
-  background-image: url('/assets/white.png'); 
-  background-size: cover;
-  background-position: center top;
-  /* background-attachment: fixed removido — não funciona em position:absolute */
+  background-color: #ffffff;
   
   z-index: -2;
   pointer-events: none;

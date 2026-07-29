@@ -170,7 +170,7 @@ export function AeroMusicPlayer() {
             <AeroBox
                 variant="sky"
                 label={currentSong.title}
-                style={{ flex: '1', minWidth: '100%', display: 'flex', marginTop: '16px' }}
+                style={{ width: '60%', display: 'flex', margin: '16px auto 0' }}
             >
                 <div style={{ display: 'flex', gap: '8px', alignItems: 'center', justifyContent: 'center', width: '100%' }}>
                    <AeroBtn variant="aqua" onClick={handlePrev} style={{ padding: '8px 12px' }}>

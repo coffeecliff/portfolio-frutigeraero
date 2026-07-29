@@ -59,7 +59,7 @@ export function AeroMusicPlayer() {
     const [spinCounter, setSpinCounter] = useState(0)
     
     const light = '#ffffff'
-    const light_intensity = 0.6
+    const light_intensity = 0.001
     
     const currentSong = playlist[currentSongIndex]
 
@@ -158,7 +158,7 @@ export function AeroMusicPlayer() {
 
                     <Suspense fallback={null}>
                         <Modelo3D spinCounter={spinCounter} />
-                        <Environment preset="warehouse" />
+                        <Environment preset="studio" />
                     </Suspense>
 
                     <EffectComposer>
@@ -190,4 +190,4 @@ export function AeroMusicPlayer() {
     )
 }
 
-useGLTF.preload('/models/soundFile_aero.glb')
+useGLTF.preload('/models/musicglassicon.glb')

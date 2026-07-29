@@ -5,16 +5,16 @@ export default function NavBar({ activeSection, onNav }) {
     const sections = ['Hero', 'Sobre', 'Trajetória', 'Projetos', 'Skills', 'Contato']
     const navRef = useRef(null)
 
-    // No topo, a navbar funde-se com o fundo; conforme o usuário rola a
-    // página, o vidro (blur/gradiente/sombra) se forma suavemente. O
-    // progresso é escrito direto no DOM via CSS var para evitar re-render
-    // da navbar a cada pixel de scroll (mesmo padrão do parallax da Hero).
+    // No topo (scrollY 0) a navbar funde-se com o fundo (invisível); assim
+    // que o usuário rola, o vidro aparece imediatamente (sem fase de
+    // transição intermediária). O estado é escrito direto no DOM via CSS
+    // var para evitar re-render da navbar a cada pixel de scroll (mesmo
+    // padrão do parallax da Hero).
     useEffect(() => {
-        const FORM_DISTANCE = 140
         const handleScroll = () => {
             if (!navRef.current) return
-            const progress = Math.min(window.scrollY / FORM_DISTANCE, 1)
-            navRef.current.style.setProperty('--nav-form', progress.toFixed(3))
+            const formed = window.scrollY > 0 ? 1 : 0
+            navRef.current.style.setProperty('--nav-form', formed)
         }
         handleScroll()
         window.addEventListener('scroll', handleScroll, { passive: true })

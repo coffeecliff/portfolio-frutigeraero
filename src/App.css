@@ -124,7 +124,7 @@ html, body, .aero-scene {
   /* No topo (--nav-form: 0) a caixa fica 40% mais larga, acompanhando o
      vidro invisível; conforme rola, encolhe de volta para 900px. */
   max-width: calc(1050px + (1 - var(--nav-form)) * 100px);
-  transition: max-width 0.25s ease;
+  transition: max-width 0.7s ease;
 }
 
 /* ── NavBar: funde-se com o fundo no topo, forma o vidro ao rolar ──
@@ -133,7 +133,7 @@ html, body, .aero-scene {
    interpolando por --nav-form, para que a transição fique contínua e
    suave em vez de um corte abrupto entre "sem vidro" e "com vidro". */
 .portfolio-nav .aero-panel.aero-panel--box.aero-box--glass2 {
-  transition: box-shadow 0.2s ease, border-color 0.2s ease, backdrop-filter 0.2s ease;
+  transition: box-shadow 0.7s ease, border-color 0.7s ease, backdrop-filter 0.7s ease, background 0.7s ease;
   background:
     linear-gradient(
       180deg,
@@ -158,13 +158,13 @@ html, body, .aero-scene {
 /* Reflexo brilhante (sheen) some junto com o vidro no topo da página */
 .portfolio-nav .aero-panel.aero-panel--box::before {
   opacity: var(--nav-form);
-  transition: opacity 0.2s ease;
+  transition: opacity 0.7s ease;
 }
 
 /* Os pills de navegação também se fundem levemente no topo */
 .portfolio-nav .portfolio-nav-btn {
   border-color: rgba(255,255,255, calc(0.08 + var(--nav-form) * 0.32));
-  transition: all 0.18s ease, border-color 0.2s ease;
+  transition: background 0.18s ease, transform 0.18s ease, border-color 0.7s ease, color 0.7s ease, text-shadow 0.7s ease;
 }
 
 .portfolio-nav-inner {
@@ -185,7 +185,7 @@ html, body, .aero-scene {
   text-shadow: 0 1px 0 rgba(192, 233, 229, calc(var(--nav-form) * 0.8));
   letter-spacing: -0.01em;
   white-space: nowrap;
-  transition: color 0.2s ease, text-shadow 0.2s ease;
+  transition: color 0.7s ease, text-shadow 0.7s ease;
 }
 
 .portfolio-nav-links {
@@ -204,7 +204,7 @@ html, body, .aero-scene {
   /* Mesma lógica da logo: escurece no topo (sem vidro), clareia ao rolar. */
   color: color-mix(in srgb, #123049 calc((1 - var(--nav-form)) * 100%), #ffffff calc(var(--nav-form) * 100%));
   cursor: pointer;
-  transition: all 0.18s ease, color 0.2s ease;
+  transition: background 0.18s ease, transform 0.18s ease, color 0.7s ease, text-shadow 0.7s ease;
   letter-spacing: 0.01em;
   border: 1px solid rgba(255,255,255,0.40);
   text-shadow: 0 1px 0 rgba(192, 233, 229, calc(var(--nav-form) * 0.8));

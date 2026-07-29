@@ -14,7 +14,7 @@ const playlist = [
 
 // Componente 3D interno privado
 function Modelo3D({ spinCounter }) {
-    const { scene } = useGLTF('/models/soundFile_aero.glb')
+    const { scene } = useGLTF('/models/musicglassicon.glb')
     const groupRef = useRef()
     const targetRotation = useRef(0)
 
@@ -43,7 +43,7 @@ function Modelo3D({ spinCounter }) {
 
     return (
         <group ref={groupRef}>
-            <primitive object={scene} scale={3.2} position={[0.6, 0, 0]} rotation={[0, 6.6, 0]} />
+            <primitive object={scene} scale={2.6} position={[0.6, 0, 0]} rotation={[0, 6.6, 0]} />
         </group>
     )
 }
@@ -134,7 +134,9 @@ export function AeroMusicPlayer() {
             <div
                 className={`aero-canvas-container user-canvas-container ${isDragging ? 'is-dragging' : ''}`}
                 style={{
-                    width: '100%',
+                    width: '120%',
+                    position: 'relative',
+                    left: '-10%',
                     height: '450px',
                     borderRadius: '12px',
                     overflow: 'hidden',
@@ -156,7 +158,7 @@ export function AeroMusicPlayer() {
 
                     <Suspense fallback={null}>
                         <Modelo3D spinCounter={spinCounter} />
-                        <Environment preset="dawn" />
+                        <Environment preset="warehouse" />
                     </Suspense>
 
                     <EffectComposer>
@@ -170,7 +172,7 @@ export function AeroMusicPlayer() {
                 label={currentSong.title}
                 style={{ flex: '1', minWidth: '100%', display: 'flex', marginTop: '16px' }}
             >
-                <div style={{ display: 'flex', gap: '8px', alignItems: 'center', marginLeft: '50px' }}>
+                <div style={{ display: 'flex', gap: '8px', alignItems: 'center', justifyContent: 'center', width: '100%' }}>
                    <AeroBtn variant="aqua" onClick={handlePrev} style={{ padding: '8px 12px' }}>
                         ⏮
                     </AeroBtn>

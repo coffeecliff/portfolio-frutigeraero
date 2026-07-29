@@ -139,7 +139,7 @@ html, body, .aero-scene {
       180deg,
       rgba(255,255,255, calc(var(--nav-form) * 0.52)) 0%,
       rgba(255,255,255, calc(var(--nav-form) * 0.06)) 48%,
-      rgba(255,255,255, 0) 100%
+      rgba(0, 255, 221, 0.329) 100%
     ),
     linear-gradient(
       155deg,
@@ -207,13 +207,12 @@ html, body, .aero-scene {
   transition: background 0.18s ease, transform 0.18s ease, color 0.7s ease, text-shadow 0.7s ease;
   letter-spacing: 0.01em;
   border: 1px solid rgba(255,255,255,0.40);
-  text-shadow: 0 1px 0 rgba(192, 233, 229, calc(var(--nav-form) * 0.8));
 
 }
 
 .portfolio-nav-btn:hover {
   background: rgba(235, 255, 233, 0.45);
-  color: color-mix(in srgb, #123049 calc((1 - var(--nav-form)) * 100%), #ffffff calc(var(--nav-form) * 100%));
+  color: color-mix(in srgb, #10630f calc((1 - var(--nav-form)) * 100%), #10630f calc(var(--nav-form) * 100%));
 }
 
 .portfolio-nav-btn.active {

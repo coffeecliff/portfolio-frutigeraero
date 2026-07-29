@@ -76,43 +76,43 @@ function HeroSection() {
   }, [charI, deleting, wi])
 
   return (
-    
+
     <section
       className="portfolio-section hero-section"
       style={{ position: 'relative' }} /* 🌟 Âncora para o fundo absoluto */
     >
 
-        {/* 🌟 Novo Elemento de Fundo Exclusivo da Hero */}
-        <div className="hero-bg" ref={parallaxRef}></div>
+      {/* 🌟 Novo Elemento de Fundo Exclusivo da Hero */}
+      <div className="hero-bg" ref={parallaxRef}></div>
 
-        {/* 🌟 Elevamos o conteúdo para o z-index 2, ficando acima do novo fundo */}
-        <div className="hero-content" style={{ position: 'relative', zIndex: 2 }}>
+      {/* 🌟 Elevamos o conteúdo para o z-index 2, ficando acima do novo fundo */}
+      <div className="hero-content" style={{ position: 'relative', zIndex: 2 }}>
 
-          <div className="hero-left">
-            <h1 className="hero-title">
-              Olá, sou<br />
-              <span className="hero-name">Cauã Cunha</span>
-            </h1>
+        <div className="hero-left">
+          <h1 className="hero-title">
+            Olá, sou<br />
+            <span className="hero-name">Cauã Cunha</span>
+          </h1>
 
-            <p className="hero-subtitle">
-              Construindo <span className="hero-type">{typed}<span className="cursor">|</span></span>
-            </p>
+          <p className="hero-subtitle">
+            Construindo <span className="hero-type">{typed}<span className="cursor">|</span></span>
+          </p>
 
-            <p className="hero-desc">
-              Desenvolvedor frontend especialista em design systems, animações e experiências
-              visuais únicas que encantam usuários.
-            </p>
-          </div>
-
-          <div className="hero-right">
-            <AeroMusicPlayer />
-          </div>
-
+          <p className="hero-desc">
+            Desenvolvedor frontend especialista em design systems, animações e experiências
+            visuais únicas que encantam usuários.
+          </p>
         </div>
 
-        <div className="hero-scroll-hint" style={{ position: 'relative', zIndex: 2 }}>
-          <span>↓ Role para explorar </span>
+        <div className="hero-right">
+          <AeroMusicPlayer />
         </div>
+
+      </div>
+
+      <div className="hero-scroll-hint" style={{ position: 'relative', zIndex: 2 }}>
+        <span>↓ Role para explorar </span>
+      </div>
 
 
     </section>
@@ -130,8 +130,13 @@ function SobreSection() {
 
       <div className="sobre-grid">
         <AeroPanel useBoxStyle variant="sky" size="lg" className="sobre-bio-panel">
-          <div className="sobre-avatar">
-            <img src="/assets/Icon1.png" style={{ width: '80%', height: '80%', objectFit: 'cover' }} alt="Avatar do Desenvolvedor" />
+          <div className="sobre-avatar-row">
+            <div className="sobre-avatar">
+              <img src="/assets/Icon1.png" style={{ width: '80%', height: '80%', objectFit: 'cover' }} alt="Avatar do Desenvolvedor" />
+            </div>
+            <AeroPanel useBoxStyle variant="aqua" size="lg" className="sobre-bio-panel">
+              <span className="sobre-name-label">Cauã Cunha Neves</span>
+            </AeroPanel>
           </div>
           <p className="sobre-text">
             Desenvolvedor apaixonado por criar interfaces que mesclam estética e função.
@@ -150,9 +155,9 @@ function SobreSection() {
         </AeroPanel>
 
         <div className="sobre-side">
-          <AeroBox variant="aqua" label="Localização" sub="Belo Horizonte, MG" icon={<span>📍</span>}/>
-          <AeroBox variant="aqua" label="Experiência" sub="3+ anos no mercado" icon={<span>💼</span>}/>
-          <AeroBox variant="aqua" label="Formação" sub="Ciência da Computação" icon={<span>🎓</span>}/>
+          <AeroBox variant="aqua" label="Localização" sub="Belo Horizonte, MG" icon={<span>📍</span>} />
+          <AeroBox variant="aqua" label="Experiência" sub="3+ anos no mercado" icon={<span>💼</span>} />
+          <AeroBox variant="aqua" label="Formação" sub="Ciência da Computação" icon={<span>🎓</span>} />
           <AeroBox variant="aqua" label="Idiomas" sub="PT-BR" icon={<span>🌐</span>} />
         </div>
       </div>
@@ -163,7 +168,7 @@ function SobreSection() {
 // ── Seção Trajetória (linha do tempo) ─────────────────────────
 function TrajetoriaSection() {
   const eventos = [
-      {
+    {
       id: '2022-libs', ano: '2022', ic: '🖥️', variant: 'forest', titulo: '3 libs open-source',
       resumo: 'Contribuiu ativamente para bibliotecas de UI e animação usadas pela comunidade.',
       detalhe: 'Publicou componentes de animação baseados em CSS custom properties e IntersectionObserver, hoje usados em pequenos projetos e protótipos de outros devs.',
@@ -580,7 +585,7 @@ export default function App() {
   return (
     <body>
       <div className="portfolio-root">
-        <BgParticles/>
+        <BgParticles />
         <NavBar activeSection={activeSection} onNav={navTo} />
 
 

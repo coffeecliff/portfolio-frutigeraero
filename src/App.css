@@ -502,9 +502,15 @@ html, body, .aero-scene {
   grid-row: span 1;
 }
 
+.sobre-avatar-row {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 16px;
+}
+
 .sobre-avatar {
   font-size: 64px;
-  margin-bottom: 16px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -514,6 +520,16 @@ html, body, .aero-scene {
   background: rgba(255,255,255,0.25);
   border: 2px solid rgba(255,255,255,0.55);
   box-shadow: 0 4px 16px rgba(0,80,140,0.2);
+  flex-shrink: 0;
+}
+
+.sobre-name-label {
+  font-size: 1.15rem;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  color: #fff;
+  text-shadow: 0 1px 3px rgba(0,40,80,0.35);
+  margin-bottom: 4%;
 }
 
 .sobre-text {

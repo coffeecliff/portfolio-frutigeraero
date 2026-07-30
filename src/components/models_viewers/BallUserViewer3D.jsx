@@ -7,10 +7,17 @@ import * as THREE from 'three'
 let localDragDelta = { x: 0, y: 0 }
 let localLastMousePos = { x: 0, y: 0 }
 
-function BallModelo3D({ color, isDraggingHTML }) {
+function BallModelo3D({ color, isDraggingHTML, randomizeRotation }) {
     const { scene } = useGLTF('/models/tiny_user_aero.glb')
     const groupRef = useRef()
     const clonedScene = React.useMemo(() => scene.clone(), [scene])
+
+    useEffect(() => {
+        if (!groupRef.current || !randomizeRotation) return
+        groupRef.current.rotation.x = Math.random() * Math.PI * 2
+        groupRef.current.rotation.y = Math.random() * Math.PI * 2
+        groupRef.current.rotation.z = Math.random() * Math.PI * 2
+    }, [randomizeRotation])
 
     React.useMemo(() => {
         clonedScene.traverse((object) => {
@@ -52,7 +59,7 @@ function BallModelo3D({ color, isDraggingHTML }) {
     )
 }
 
-export function BallUserViewer3D({ top, left, color = '#36a8ac' }) {
+export function BallUserViewer3D({ top, left, color = '#36a8ac', randomizeRotation = true }) {
     // 🌟 1. Estado para controlar se a tela é mobile
     const [isMobile, setIsMobile] = useState(false)
     
@@ -234,7 +241,7 @@ export function BallUserViewer3D({ top, left, color = '#36a8ac' }) {
                     <directionalLight position={[0, 0, -600]} intensity={light_intensity} color={light} />
 
                     <Suspense fallback={null}>
-                        <BallModelo3D color={color} isDraggingHTML={isDraggingHTML} />
+                        <BallModelo3D color={color} isDraggingHTML={isDraggingHTML} randomizeRotation={randomizeRotation} />
                         <Environment preset="dawn" />
                     </Suspense>
 

@@ -139,7 +139,7 @@ html, body, .aero-scene {
       180deg,
       rgba(255,255,255, calc(var(--nav-form) * 0.52)) 0%,
       rgba(255,255,255, calc(var(--nav-form) * 0.06)) 48%,
-      rgba(0, 255, 221, 0.329) 100%
+      rgba(0, 255, 221, 0) 100%
     ),
     linear-gradient(
       155deg,

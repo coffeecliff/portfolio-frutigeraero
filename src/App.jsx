@@ -89,18 +89,13 @@ function HeroSection() {
       <div className="hero-content" style={{ position: 'relative', zIndex: 2 }}>
 
         <div className="hero-left">
-          <h1 className="hero-title">
-            Olá, sou<br />
-            <span className="hero-name">Cauã Cunha</span>
+          <h1 className="hero-title hero-title-neo">
+            <img src="/assets/NEO_texto.svg" alt="NEO" className="hero-neo-img" />
+            <span className="hero-name hero-neo-text">Frutiger Aero</span>
           </h1>
 
           <p className="hero-subtitle">
             Construindo <span className="hero-type">{typed}<span className="cursor">|</span></span>
-          </p>
-
-          <p className="hero-desc">
-            Desenvolvedor frontend especialista em design systems, animações e experiências
-            visuais únicas que encantam usuários.
           </p>
         </div>
 
@@ -599,7 +594,7 @@ export default function App() {
 
           <BallUserViewer3D top='1%' left='87%' color='#6fac36' />
           <BallUserViewer3D top='50%' left='87%' color='#d3b634' />
-          <BallUserViewer3D top='14%' right='90%' color='#6fac36' />
+          <BallUserViewer3D top='12%' right='90%' color='#6fac36' />
           <FolderViewer3D top='34%' left='65%' />
 
         </main>

@@ -412,7 +412,7 @@ html, body, .aero-scene {
 
 .hero-title {
   font-family: 'Exo 2', sans-serif;
-  font-size: 3.2rem;
+  font-size: 3.84rem;
   font-weight: 600;
   line-height: 1.1;
   color: #003354;
@@ -428,8 +428,33 @@ html, body, .aero-scene {
   background-clip: text;
 }
 
+.hero-title-neo {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 8px;
+}
+
+.hero-neo-img {
+  width: min(460px, 54vw);
+  height: auto;
+  display: block;
+  filter: drop-shadow(0 2px 6px rgba(255,255,255,0.55));
+  animation: neoFloat 4s ease-in-out infinite;
+}
+
+.hero-neo-text {
+  font-size: 1.32em;
+  letter-spacing: -0.02em;
+}
+
+@keyframes neoFloat {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-6px); }
+}
+
 .hero-subtitle {
-  font-size: 1.7rem;
+  font-size: 2.04rem;
   font-weight: 600;
   color: rgba(10, 183, 206, 0.938);
   text-shadow: 0 1px 3px rgba(255,255,255,0.5);
@@ -1053,7 +1078,7 @@ html, body, .aero-scene {
   .portfolio-nav-links { display: none; }
   .portfolio-section { padding: 60px 20px; }
   .section-title { font-size: 1.9rem; }
-  .hero-title { font-size: 2.4rem; }
+  .hero-title { font-size: 2.88rem; }
 
   .timeline-line { left: 20px; }
   .timeline-node--left, .timeline-node--right { justify-content: flex-start; }

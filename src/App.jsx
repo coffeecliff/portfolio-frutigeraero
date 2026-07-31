@@ -12,30 +12,31 @@ import { LavaBubbles } from './components/lavaBubbles'
 import './App.css'
 import NavBar from './components/navbar'
 
+// 🌟 Imagem de fundo da Hero — anexe aqui o caminho do seu arquivo (deve
+// viver em `public/`, ex: `public/assets/hero-bg.jpg`, e ser referenciado
+// com caminho absoluto). Deixe null/'' para manter o fundo atual (gradiente
+// branco com máscara).
+const BG_IMAGE = '/assets/water_bg.png'
+
+// Rótulos exibidos na navbar/CTAs usam os mesmos ids de seção do App —
+// aqui só o texto de exibição da Hero.
+const featureItems = [
+  { icon: '✦', label: 'Design Futurista', sub: 'Estética moderna inspirada no visual Frutiger Aero.', variant: 'aqua' },
+  { icon: '</>', label: 'Tecnologia & Performance', sub: 'Soluções rápidas, responsivas e otimizadas.', variant: 'sky' },
+  { icon: '🌿', label: 'Foco em Experiência', sub: 'Interfaces intuitivas que conectam e geram impacto.', variant: 'forest' },
+  { icon: '👤', label: 'Personalizado', sub: 'Cada projeto é único, feito para o seu objetivo.', variant: 'sky' },
+]
+
+const statItems = [
+  { icon: '🗂️', value: '10+', label: 'Projetos entregues' },
+  { icon: '➕', value: '100%', label: 'Clientes satisfeitos' },
+  { icon: '💚', value: '2+', label: 'Anos de experiência' },
+  { icon: '∞', value: '∞', label: 'Possibilidades criativas' },
+]
+
 // ── Seção Hero ───────────────────────────────────────────────
-function HeroSection() {
-  const [typed, setTyped] = useState('')
-  const words = ['Interfaces.', 'Experiências.', 'Design Systems.', 'Modelos 3D.']
-  const [wi, setWi] = useState(0)
-  const [charI, setCharI] = useState(0)
-  const [deleting, setDeleting] = useState(false)
-
-  // Substitua pelo caminho correto do seu arquivo dentro da pasta public
-  const audioRef = useRef(null)
+function HeroSection({ navTo }) {
   const parallaxRef = useRef(null)
-
-  // Inicializa o áudio apenas uma vez ao carregar o componente
-  useEffect(() => {
-    audioRef.current = new Audio('/musica.mp3')
-    audioRef.current.loop = true // Ative se quiser que ela fique em loop
-
-    // Cleanup: pausa a música se o usuário mudar de página/componente desmontar
-    return () => {
-      if (audioRef.current) {
-        audioRef.current.pause()
-      }
-    }
-  }, [])
 
   // ── Parallax via scroll ──────────────────────────────────
   useEffect(() => {
@@ -49,32 +50,6 @@ function HeroSection() {
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
 
-
-  // ───────────────────────────────────────────────────────────
-
-  useEffect(() => {
-    const current = words[wi]
-    const timeout = setTimeout(() => {
-      if (!deleting) {
-        setTyped(current.slice(0, charI + 1))
-        if (charI + 1 === current.length) {
-          setTimeout(() => setDeleting(true), 1400)
-        } else {
-          setCharI(c => c + 1)
-        }
-      } else {
-        setTyped(current.slice(0, charI - 1))
-        if (charI === 0) {
-          setDeleting(false)
-          setWi(w => (w + 1) % words.length)
-        } else {
-          setCharI(c => c - 1)
-        }
-      }
-    }, deleting ? 55 : 95)
-    return () => clearTimeout(timeout)
-  }, [charI, deleting, wi])
-
   return (
 
     <section
@@ -82,8 +57,12 @@ function HeroSection() {
       style={{ position: 'relative' }} /* 🌟 Âncora para o fundo absoluto */
     >
 
-      {/* 🌟 Novo Elemento de Fundo Exclusivo da Hero */}
-      <div className="hero-bg" ref={parallaxRef}></div>
+      {/* 🌟 Fundo da Hero — usa BG_IMAGE quando definida, senão mantém o gradiente atual */}
+      <div
+        className="hero-bg"
+        ref={parallaxRef}
+        style={BG_IMAGE ? { backgroundImage: `url(${BG_IMAGE})`, backgroundSize: 'cover', backgroundPosition: 'center' } : undefined}
+      ></div>
 
       {/* 🌟 Bolhas Lava Lamp, uma camada acima da box branca */}
       <div className="hero-bubbles-layer">
@@ -94,20 +73,87 @@ function HeroSection() {
       <div className="hero-content" style={{ position: 'relative', zIndex: 2 }}>
 
         <div className="hero-left">
+          <AeroPanel useBoxStyle variant="glass" size="sm" className="hero-badge-panel">
+            <span className="hero-badge">Design • Tecnologia • Criatividade</span>
+          </AeroPanel>
+
           <h1 className="hero-title hero-title-neo">
             <img src="/assets/NEO_texto.svg" alt="NEO" className="hero-neo-img" />
             <span className="hero-name hero-neo-text">Frutiger Aero</span>
           </h1>
 
-          <p className="hero-subtitle">
-            Construindo <span className="hero-type">{typed}<span className="cursor">|</span></span>
+          <p className="hero-desc">
+            Designs e experiências digitais que unem estética futurista, funcionalidade e propósito.
+          </p>
+
+          <div className="hero-actions">
+            <AeroBtn variant="forest" onClick={() => navTo?.('Projetos')}>
+              Ver projetos →
+            </AeroBtn>
+            <AeroBtn variant="glass" onClick={() => navTo?.('Sobre')}>
+              Saiba mais ⌄
+            </AeroBtn>
+          </div>
+
+          <p className="hero-mini-stats">
+            +10 projetos concluídos &nbsp;•&nbsp; Clientes satisfeitos &nbsp;•&nbsp; Entregas de qualidade
           </p>
         </div>
 
         <div className="hero-right">
-          <AeroMusicPlayer />
+          {/* 🌟 Composição do player: bolhas 3D + AeroMusicPlayer */}
+          <div className="hero-player-composition">
+            {/* Encaixe aqui os dois <BallUserViewer3D/> ao redor do player.
+                Posições sugeridas (ajuste conforme o resultado visual): */}
+            {/* <BallUserViewer3D top="4%" left="2%" color="#6fac36" /> */}
+            {/* <BallUserViewer3D top="66%" left="78%" color="#3aa8d8" /> */}
+
+            <div className="hero-music-player-scale">
+              <AeroMusicPlayer />
+            </div>
+          </div>
         </div>
 
+      </div>
+
+      {/* 🌟 Faixa de destaques (design/tecnologia/experiência/personalização) */}
+      <AeroPanel useBoxStyle variant="glass" className="hero-features-panel" style={{ position: 'relative', zIndex: 2 }}>
+        <AeroGrid cols="auto" gap="4px" className="hero-features-grid">
+          {featureItems.map(f => (
+            <AeroBox
+              key={f.label}
+              variant={f.variant}
+              size="sm"
+              icon={<span>{f.icon}</span>}
+              label={f.label}
+              sub={f.sub}
+              className="hero-feature-box"
+            />
+          ))}
+        </AeroGrid>
+      </AeroPanel>
+
+      {/* 🌟 Linha inferior: estatísticas + CTA "Vamos criar algo incrível juntos?" */}
+      <div className="hero-bottom-row" style={{ position: 'relative', zIndex: 2 }}>
+        <AeroPanel useBoxStyle variant="glass" className="hero-stats-panel">
+          <AeroGrid cols={2} gap="10px">
+            {statItems.map(s => (
+              <div key={s.label} className="hero-stat-item">
+                <span className="hero-stat-icon">{s.icon}</span>
+                <span className="hero-stat-value">{s.value}</span>
+                <span className="hero-stat-label">{s.label}</span>
+              </div>
+            ))}
+          </AeroGrid>
+        </AeroPanel>
+
+        <AeroPanel useBoxStyle variant="forest" size="lg" className="hero-cta-panel">
+          <h3 className="hero-cta-title">Vamos criar algo incrível juntos?</h3>
+          <p className="hero-cta-text">Conte sua ideia e eu transformo em realidade.</p>
+          <AeroBtn variant="glass" onClick={() => navTo?.('Contato')}>
+            Falar agora →
+          </AeroBtn>
+        </AeroPanel>
       </div>
 
       <div className="hero-scroll-hint" style={{ position: 'relative', zIndex: 2 }}>
@@ -589,7 +635,7 @@ export default function App() {
 
 
         <main className="portfolio-main">
-          <div ref={heroRef}><HeroSection /></div>
+          <div ref={heroRef}><HeroSection navTo={navTo} /></div>
           <div ref={sobreRef} className="reveal"><SobreSection /></div>
           <div ref={trajetoriaRef} className="reveal"><TrajetoriaSection /></div>
           <div ref={projetosRef} className="reveal"><ProjetosSection /></div>

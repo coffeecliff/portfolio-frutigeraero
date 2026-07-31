@@ -1,8 +1,19 @@
 import { useEffect, useRef } from 'react'
-import { AeroPanel } from './aeroBox'
+import { AeroPanel, AeroBtn } from './aeroBox'
+
+// Rótulos exibidos na navbar — a chave é o id interno da seção (usado por
+// navTo/IntersectionObserver em App.jsx), o valor é o texto visível.
+const SECTION_LABELS = {
+    Hero: 'Início',
+    Sobre: 'Sobre',
+    Trajetória: 'Trajetória',
+    Projetos: 'Projetos',
+    Skills: 'Skills',
+    Contato: 'Contato',
+}
 
 export default function NavBar({ activeSection, onNav }) {
-    const sections = ['Hero', 'Sobre', 'Trajetória', 'Projetos', 'Skills', 'Contato']
+    const sections = Object.keys(SECTION_LABELS)
     const navRef = useRef(null)
 
     // No topo (scrollY 0) a navbar funde-se com o fundo (invisível); assim
@@ -23,9 +34,15 @@ export default function NavBar({ activeSection, onNav }) {
 
     return (
         <nav className="portfolio-nav" ref={navRef}>
-            <AeroPanel useBoxStyle variant="glass2" className="contato-quote-panel portfolio-nav-panel">
+            <AeroPanel useBoxStyle variant="glass2" className="portfolio-nav-panel">
                 <div className="portfolio-nav-inner">
-                    <span className="portfolio-nav-logo">✦ Seções</span>
+                    <div className="portfolio-nav-logo-block" onClick={() => onNav('Hero')} role="button" tabIndex={0}>
+                        <span className="portfolio-nav-logo-main">
+                            <span className="portfolio-nav-logo-star">✦</span> NEO
+                        </span>
+                        <span className="portfolio-nav-logo-sub">Frutiger Aero</span>
+                    </div>
+
                     <div className="portfolio-nav-links">
                         {sections.map(s => (
                             <button
@@ -33,9 +50,15 @@ export default function NavBar({ activeSection, onNav }) {
                                 className={`portfolio-nav-btn ${activeSection === s ? 'active' : ''}`}
                                 onClick={() => onNav(s)}
                             >
-                                {s}
+                                {SECTION_LABELS[s]}
                             </button>
                         ))}
+                    </div>
+
+                    <div className="portfolio-nav-cta">
+                        <AeroBtn variant="forest" onClick={() => onNav('Contato')}>
+                            Fale comigo →
+                        </AeroBtn>
                     </div>
                 </div>
             </AeroPanel>

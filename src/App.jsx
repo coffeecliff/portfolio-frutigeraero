@@ -83,7 +83,7 @@ function HeroSection({ navTo }) {
           </div>
 
           <p className="hero-mini-stats">
-            +10 projetos concluídos &nbsp;•&nbsp; Clientes satisfeitos &nbsp;•&nbsp; Entregas de qualidade
+            Visuais elegantes &nbsp;•&nbsp; Entregas de qualidade
           </p>
         </div>
 

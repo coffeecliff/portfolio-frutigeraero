@@ -7,6 +7,7 @@ import { AeroBox, AeroPanel, AeroGrid, AeroBtn } from './components/aeroBox'
 import { FolderViewer3D } from './components/models_viewers/FolderViewer3D'
 import { BallUserViewer3D } from './components/models_viewers/BallUserViewer3D'
 import { AeroMusicPlayer } from './components/musicPlayer'
+import { FaGithub, FaWhatsapp } from 'react-icons/fa'
 
 import './App.css'
 import NavBar from './components/navbar'
@@ -428,20 +429,14 @@ function SkillsSection() {
 }
 
 // ── Seção Contato ────────────────────────────────────────────
+const contatoLinks = [
+  { label: 'GitHub', sub: 'github.com/coffeecliff', icon: <FaGithub />, variant: 'aqua', href: 'https://github.com/coffeecliff' },
+  { label: 'WhatsApp', sub: '+55 (35) 99919-4121', icon: <FaWhatsapp />, variant: 'forest', href: 'https://wa.me/5535999194121' },
+  { label: 'LinkedIn', sub: 'linkedin.com/in/coffeecliff', icon: '💼', variant: 'sky', href: 'https://linkedin.com/in/coffeecliff' },
+  { label: 'E-mail', sub: 'cauaneves976@gmail.com', icon: '📧', variant: 'aurora', href: 'mailto:cauaneves976@gmail.com' },
+]
+
 function ContatoSection() {
-  const [nome, setNome] = useState('')
-  const [email, setEmail] = useState('')
-  const [msg, setMsg] = useState('')
-  const [enviado, setEnviado] = useState(false)
-
-  const handleEnviar = () => {
-    if (nome && email && msg) {
-      setEnviado(true)
-      setTimeout(() => setEnviado(false), 3000)
-      setNome(''); setEmail(''); setMsg('')
-    }
-  }
-
   return (
     <section className="portfolio-section contato-section">
       <div className="section-header">
@@ -452,10 +447,6 @@ function ContatoSection() {
 
       <div className="contato-layout">
         <div className="contato-info">
-          <AeroBox variant="sky" label="E-mail" sub="cauaneves976@gmail.com" icon={<span>📧</span>} />
-          <AeroBox variant="aqua" label="LinkedIn" sub="NUM TENHO AINDA" icon={<span>💼</span>} />
-          <AeroBox variant="forest" label="GitHub" sub="coffecliff" icon={<span>🐙</span>} />
-          <AeroBox variant="aurora" label="Respondo em" sub="Até 24 horas" icon={<span>⚡</span>} />
 
           <AeroPanel useBoxStyle variant="glass" className="contato-quote-panel">
             <p className="contato-quote">
@@ -465,49 +456,21 @@ function ContatoSection() {
           </AeroPanel>
         </div>
 
-        <AeroPanel title="Envie uma Mensagem" className="contato-form-panel">
-          {enviado ? (
-            <div className="form-success">
-              <span style={{ fontSize: 48 }}>✅</span>
-              <p>Mensagem enviada com sucesso!</p>
-              <p style={{ opacity: 0.7, fontSize: '0.9rem' }}>Em breve entrarei em contato.</p>
-            </div>
-          ) : (
-            <div className="form-fields">
-              <div className="form-group">
-                <label className="form-label">Seu Nome</label>
-                <input
-                  className="aero-input"
-                  placeholder="João Silva"
-                  value={nome}
-                  onChange={e => setNome(e.target.value)}
-                />
-              </div>
-              <div className="form-group">
-                <label className="form-label">E-mail</label>
-                <input
-                  className="aero-input"
-                  type="email"
-                  placeholder="joao@email.com"
-                  value={email}
-                  onChange={e => setEmail(e.target.value)}
-                />
-              </div>
-              <div className="form-group">
-                <label className="form-label">Mensagem</label>
-                <textarea
-                  className="aero-input aero-textarea"
-                  placeholder="Olá Cauã, tenho um projeto..."
-                  value={msg}
-                  onChange={e => setMsg(e.target.value)}
-                  rows={5}
-                />
-              </div>
-              <AeroBtn variant="sky" onClick={handleEnviar} style={{ width: '100%', justifyContent: 'center' }}>
-                Enviar Mensagem 🚀
-              </AeroBtn>
-            </div>
-          )}
+        <AeroPanel title="Fale Comigo" className="contato-form-panel">
+          <AeroGrid cols={2} gap="12px" className="contato-links-grid">
+            {contatoLinks.map(c => (
+              <AeroBox
+                key={c.label}
+                variant={c.variant}
+                size="lg"
+                label={c.label}
+                sub={c.sub}
+                icon={<span>{c.icon}</span>}
+                onClick={() => window.open(c.href, '_blank', 'noopener,noreferrer')}
+                className="contato-link-tile"
+              />
+            ))}
+          </AeroGrid>
         </AeroPanel>
       </div>
     </section>

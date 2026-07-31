@@ -27,11 +27,6 @@ const featureItems = [
   { icon: '👤', label: 'Personalizado', sub: 'Cada projeto é único, feito para o seu objetivo.', variant: 'sky' },
 ]
 
-const statItems = [
-  { icon: '🗂️', value: '10+', label: 'Projetos entregues' },
-  { icon: '➕', value: '100%', label: 'Clientes satisfeitos' },
-]
-
 // ── Seção Hero ───────────────────────────────────────────────
 function HeroSection({ navTo }) {
   const parallaxRef = useRef(null)
@@ -617,9 +612,9 @@ export default function App() {
           <div ref={skillsRef} className="reveal"><SkillsSection /></div>
           <div ref={contatoRef} className="reveal"><ContatoSection /></div>
 
-          <BallUserViewer3D top='2%' left='87%' color='#6fac36' />
+          <BallUserViewer3D top='8%' left='78%' color='#6fac36' />
           <BallUserViewer3D top='50%' left='87%' color='#d3b634' />
-          <BallUserViewer3D top='10%' right='90%' color='#6fac36' />
+          <BallUserViewer3D top='3%' left='50%' color='#6fac36' />
           <FolderViewer3D top='34%' left='65%' />
 
         </main>

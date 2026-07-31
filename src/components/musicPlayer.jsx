@@ -144,7 +144,7 @@ export function AeroMusicPlayer() {
                 }}
             >
                 <Canvas
-                    camera={{ position: [10, 1, -10], fov: 30 }}
+                    camera={{ position: [10, 1, -10], fov: 27.7 }}
                     gl={{ toneMappingExposure: 1.2 }}
                     onPointerDown={() => setIsDragging(true)}
                     onPointerUp={() => setIsDragging(false)}

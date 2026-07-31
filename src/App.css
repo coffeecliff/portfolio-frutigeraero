@@ -631,7 +631,7 @@ html, body, .aero-scene {
 }
 
 .hero-music-player-scale {
-  transform: scale(1);
+  transform: scale(1) translateX(-20%);
   transform-origin: center;
 }
 

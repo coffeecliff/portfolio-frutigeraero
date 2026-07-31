@@ -544,11 +544,12 @@ html, body, .aero-scene {
 }
 
 .hero-neo-img {
-  width: min(460px, 54vw);
+  width: min(200px, 54vw);
   height: auto;
   display: block;
   filter: drop-shadow(0 2px 6px rgba(255,255,255,0.55));
   animation: neoFloat 4s ease-in-out infinite;
+  margin-bottom: -4px;
 }
 
 .hero-neo-text {
@@ -636,7 +637,7 @@ html, body, .aero-scene {
 
 /* ── Faixa de destaques (Design/Tecnologia/Experiência/Personalizado) ── */
 .hero-features-panel {
-  margin-top: 56px;
+  margin-top: 20px;
   padding: 20px 28px;
 }
 
@@ -654,82 +655,6 @@ html, body, .aero-scene {
   grid-template-columns: 1fr 1.3fr;
   gap: 20px;
   margin-top: 20px;
-}
-
-.hero-stats-panel {
-  padding: 24px 28px;
-}
-
-.hero-stat-item {
-  display: flex;
-  flex-direction: column;
-  gap: 2px;
-}
-
-.hero-stat-icon {
-  font-size: 1.1rem;
-  margin-bottom: 2px;
-}
-
-.hero-stat-value {
-  font-family: 'Exo 2', sans-serif;
-  font-size: 1.6rem;
-  font-weight: 700;
-  color: #003354;
-  text-shadow: 0 1px 2px rgba(255,255,255,0.6);
-}
-
-.hero-stat-label {
-  font-size: 0.8rem;
-  color: rgba(0, 60, 90, 0.65);
-}
-
-.hero-cta-panel {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  gap: 8px;
-  overflow: hidden;
-}
-
-/* Bolha decorativa de vidro, ecoando o motivo das BallUserViewer3D sem
-   depender de um componente 3D extra dentro do painel de CTA. */
-.hero-cta-panel::after {
-  content: '';
-  position: absolute;
-  top: 50%;
-  right: -40px;
-  width: 160px;
-  height: 160px;
-  border-radius: 50%;
-  transform: translateY(-50%);
-  background:
-    radial-gradient(circle at 32% 28%, rgba(255,255,255,0.75) 0%, rgba(255,255,255,0) 40%),
-    radial-gradient(circle at 50% 50%, rgba(255,255,255,0.30) 0%, rgba(255,255,255,0.05) 70%);
-  box-shadow: inset 0 0 20px rgba(255,255,255,0.35);
-  pointer-events: none;
-  z-index: 0;
-}
-
-.hero-cta-panel > * {
-  position: relative;
-  z-index: 1;
-}
-
-.hero-cta-title {
-  font-family: 'Exo 2', sans-serif;
-  font-size: 1.3rem;
-  font-weight: 600;
-  color: #fff;
-  margin: 0;
-  text-shadow: 0 1px 3px rgba(0,40,30,0.35);
-}
-
-.hero-cta-text {
-  font-size: 0.92rem;
-  color: rgba(255,255,255,0.88);
-  margin: 0 0 6px;
 }
 
 .hero-scroll-hint {

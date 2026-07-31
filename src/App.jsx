@@ -30,8 +30,6 @@ const featureItems = [
 const statItems = [
   { icon: '🗂️', value: '10+', label: 'Projetos entregues' },
   { icon: '➕', value: '100%', label: 'Clientes satisfeitos' },
-  { icon: '💚', value: '2+', label: 'Anos de experiência' },
-  { icon: '∞', value: '∞', label: 'Possibilidades criativas' },
 ]
 
 // ── Seção Hero ───────────────────────────────────────────────
@@ -61,7 +59,7 @@ function HeroSection({ navTo }) {
       <div
         className="hero-bg"
         ref={parallaxRef}
-        style={BG_IMAGE ? { backgroundImage: `url(${BG_IMAGE})`, backgroundSize: 'cover', backgroundPosition: 'center' } : undefined}
+        style={BG_IMAGE ? { backgroundImage: `url(${BG_IMAGE})`, backgroundSize: '2200px', backgroundPosition: 'top' } : undefined}
       ></div>
 
       {/* 🌟 Bolhas Lava Lamp, uma camada acima da box branca */}
@@ -110,7 +108,7 @@ function HeroSection({ navTo }) {
 
             <div className="hero-music-player-scale">
               <AeroMusicPlayer />
-            </div>
+            </div> 
           </div>
         </div>
 
@@ -132,29 +130,6 @@ function HeroSection({ navTo }) {
           ))}
         </AeroGrid>
       </AeroPanel>
-
-      {/* 🌟 Linha inferior: estatísticas + CTA "Vamos criar algo incrível juntos?" */}
-      <div className="hero-bottom-row" style={{ position: 'relative', zIndex: 2 }}>
-        <AeroPanel useBoxStyle variant="glass" className="hero-stats-panel">
-          <AeroGrid cols={2} gap="10px">
-            {statItems.map(s => (
-              <div key={s.label} className="hero-stat-item">
-                <span className="hero-stat-icon">{s.icon}</span>
-                <span className="hero-stat-value">{s.value}</span>
-                <span className="hero-stat-label">{s.label}</span>
-              </div>
-            ))}
-          </AeroGrid>
-        </AeroPanel>
-
-        <AeroPanel useBoxStyle variant="forest" size="lg" className="hero-cta-panel">
-          <h3 className="hero-cta-title">Vamos criar algo incrível juntos?</h3>
-          <p className="hero-cta-text">Conte sua ideia e eu transformo em realidade.</p>
-          <AeroBtn variant="glass" onClick={() => navTo?.('Contato')}>
-            Falar agora →
-          </AeroBtn>
-        </AeroPanel>
-      </div>
 
       <div className="hero-scroll-hint" style={{ position: 'relative', zIndex: 2 }}>
         <span>↓ Role para explorar </span>

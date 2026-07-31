@@ -208,7 +208,9 @@ export function BallUserViewer3D({ top, left, color = '#36a8ac', randomizeRotati
                 height: `${widgetSize}px`,
                 zIndex: 2,
                 background: 'transparent',
-                cursor: isDraggingHTML ? 'grabbing' : 'pointer',
+                cursor: isDraggingHTML
+                    ? "url('/assets/drag_cursor.svg') 16 16, grabbing"
+                    : "url('/assets/grab_cursor.svg') 16 16, pointer",
                 touchAction: 'none'
             }}
         >

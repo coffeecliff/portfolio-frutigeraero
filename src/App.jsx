@@ -7,7 +7,7 @@ import { AeroBox, AeroPanel, AeroGrid, AeroBtn } from './components/aeroBox'
 import { FolderViewer3D } from './components/models_viewers/FolderViewer3D'
 import { BallUserViewer3D } from './components/models_viewers/BallUserViewer3D'
 import { AeroMusicPlayer } from './components/musicPlayer'
-import { BgParticles } from './components/bgParticles'
+import { LavaBubbles } from './components/lavaBubbles'
 
 import './App.css'
 import NavBar from './components/navbar'
@@ -84,6 +84,11 @@ function HeroSection() {
 
       {/* 🌟 Novo Elemento de Fundo Exclusivo da Hero */}
       <div className="hero-bg" ref={parallaxRef}></div>
+
+      {/* 🌟 Bolhas Lava Lamp, uma camada acima da box branca */}
+      <div className="hero-bubbles-layer">
+        <LavaBubbles />
+      </div>
 
       {/* 🌟 Elevamos o conteúdo para o z-index 2, ficando acima do novo fundo */}
       <div className="hero-content" style={{ position: 'relative', zIndex: 2 }}>
@@ -580,7 +585,6 @@ export default function App() {
   return (
     <body>
       <div className="portfolio-root">
-        <BgParticles />
         <NavBar activeSection={activeSection} onNav={navTo} />
 
 
@@ -592,15 +596,15 @@ export default function App() {
           <div ref={skillsRef} className="reveal"><SkillsSection /></div>
           <div ref={contatoRef} className="reveal"><ContatoSection /></div>
 
-          <BallUserViewer3D top='1%' left='87%' color='#6fac36' />
+          <BallUserViewer3D top='2%' left='87%' color='#6fac36' />
           <BallUserViewer3D top='50%' left='87%' color='#d3b634' />
-          <BallUserViewer3D top='12%' right='90%' color='#6fac36' />
+          <BallUserViewer3D top='10%' right='90%' color='#6fac36' />
           <FolderViewer3D top='34%' left='65%' />
 
         </main>
 
         <footer className="portfolio-footer">
-          <span>✦ dev.studio — Cauã Cunha Neves© 2026</span>
+          <span>✦ dev.studio — Cauã Cunha Neves © 2026</span>
         </footer>
       </div>
     </body>

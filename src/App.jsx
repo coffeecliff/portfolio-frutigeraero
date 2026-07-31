@@ -7,7 +7,6 @@ import { AeroBox, AeroPanel, AeroGrid, AeroBtn } from './components/aeroBox'
 import { FolderViewer3D } from './components/models_viewers/FolderViewer3D'
 import { BallUserViewer3D } from './components/models_viewers/BallUserViewer3D'
 import { AeroMusicPlayer } from './components/musicPlayer'
-import { LavaBubbles } from './components/lavaBubbles'
 
 import './App.css'
 import NavBar from './components/navbar'
@@ -56,11 +55,6 @@ function HeroSection({ navTo }) {
         ref={parallaxRef}
         style={BG_IMAGE ? { backgroundImage: `url(${BG_IMAGE})`, backgroundSize: '2200px', backgroundPosition: 'top' } : undefined}
       ></div>
-
-      {/* 🌟 Bolhas Lava Lamp, uma camada acima da box branca */}
-      <div className="hero-bubbles-layer">
-        <LavaBubbles />
-      </div>
 
       {/* 🌟 Elevamos o conteúdo para o z-index 2, ficando acima do novo fundo */}
       <div className="hero-content" style={{ position: 'relative', zIndex: 2 }}>

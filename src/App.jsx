@@ -180,34 +180,24 @@ function SobreSection() {
 function TrajetoriaSection() {
   const eventos = [
     {
-      id: '2022-libs', ano: '2022', ic: '🖥️', variant: 'forest', titulo: '3 libs open-source',
-      resumo: 'Contribuiu ativamente para bibliotecas de UI e animação usadas pela comunidade.',
-      detalhe: 'Publicou componentes de animação baseados em CSS custom properties e IntersectionObserver, hoje usados em pequenos projetos e protótipos de outros devs.',
+      id: 'ti1', ano: '2023 - 2025', ic: '🖥️', variant: 'forest', titulo: 'Curso Técnico em Informática',
+      resumo: 'Curso técnico de 2 anos focado no ciclo completo de desenvolvimento de software, infraestrutura de redes e manutenção preventiva/corretiva de computadores.',
+      detalhe: 'Montagem e manutenção de hardware, administração de redes e servidores, desenvolvimento de software.',
     },
     {
-      id: '2023-senior', ano: '2023', ic: '🖥️', variant: 'sky', titulo: 'Senior Dev na Fintech XYZ',
-      resumo: 'Liderou a reconstrução do dashboard principal em React + TypeScript.',
-      detalhe: 'Conduziu a migração de uma stack legada para um design system próprio, reduzindo o tempo de carregamento em 40% e mentorando dois desenvolvedores júnior no processo.',
+      id: 'ti2', ano: '2023 - 2024', ic: '🖥️', variant: 'aqua', titulo: 'Módulo I do Senac Tec',
+      resumo: 'Primeiro módulo do curso Senac Tec, com foco no desenvolvimento do Frontend de aplicações web, englobando a construção de interfaces responsivas, estruturação de código e boas práticas de UI/UX.',
+      detalhe: 'Desenvolvimento web colaborativo em equipe e simulação de rotinas de projetos Frontend.',
     },
     {
-      id: '2024-libs', ano: '2024', ic: '🖥️', variant: 'forest', titulo: '3 libs open-source',
-      resumo: 'Contribuiu ativamente para bibliotecas de UI e animação usadas pela comunidade.',
-      detalhe: 'Publicou componentes de animação baseados em CSS custom properties e IntersectionObserver, hoje usados em pequenos projetos e protótipos de outros devs.',
+      id: 'ti3', ano: '2024 - 2025', ic: '🖥️', variant: 'forest', titulo: 'Módulo II do Senac Tec',
+      resumo: 'Segundo módulo do curso Senac Tec, com foco na engenharia completa (Full Stack) de aplicações web, abrangendo a integração ponta a ponta entre interfaces de usuário, regras de negócio e bancos de dados.',
+      detalhe: 'Atuação em ambiente de desenvolvimento web em equipe focado em arquitetura Frontend e Backend.',
     },
     {
-      id: '2025-junior', ano: '2025', ic: '🖥️', variant: 'sky', titulo: 'Primeiro emprego como dev júnior',
-      resumo: 'Entrou no mercado construindo interfaces para um produto SaaS de gestão.',
-      detalhe: 'Primeiro contato com produção: aprendeu Git, revisão de código e a trabalhar em squad ágil, plantando a base do interesse por design e experiência do usuário.',
-    },
-    {
-      id: '2026-junior-a', ano: '2026', ic: '🖥️', variant: 'forest', titulo: 'Primeiro emprego como dev júnior',
-      resumo: 'Entrou no mercado construindo interfaces para um produto SaaS de gestão.',
-      detalhe: 'Primeiro contato com produção: aprendeu Git, revisão de código e a trabalhar em squad ágil, plantando a base do interesse por design e experiência do usuário.',
-    },
-    {
-      id: '2026-junior-b', ano: '2026', ic: '🖥️', variant: 'sky', titulo: 'Primeiro emprego como dev júnior',
-      resumo: 'Entrou no mercado construindo interfaces para um produto SaaS de gestão.',
-      detalhe: 'Primeiro contato com produção: aprendeu Git, revisão de código e a trabalhar em squad ágil, plantando a base do interesse por design e experiência do usuário.',
+      id: 'ti4', ano: '2025 - 2026', ic: '🖥️', variant: 'aqua', titulo: 'Módulo III do Senac Tec',
+      resumo: 'Terceiro módulo do curso Senac Tec, com foco no desenvolvimento de aplicativos mobile, integrando a criação de interfaces móveis com serviços, consumo de APIs e gestão de dados..',
+      detalhe: 'Desenvolvimento colaborativo de aplicativos móveis em equipe, cobrindo etapas de Frontend e Backend.',
     },
   ]
 
@@ -249,7 +239,7 @@ function TrajetoriaSection() {
     <section className="portfolio-section trajetoria-section">
       <div className="section-header">
         <span className="section-eyebrow">Como cheguei até aqui</span>
-        <h2 className="section-title">Linha do Tempo</h2>
+        <h2 className="section-title">Formação</h2>
       </div>
 
       <div className="timeline-track" ref={trackRef}>
@@ -430,9 +420,9 @@ function SkillsSection() {
 
 // ── Seção Contato ────────────────────────────────────────────
 const contatoLinks = [
-  { label: 'GitHub', sub: 'github.com/coffeecliff', icon: <FaGithub />, variant: 'aqua', href: 'https://github.com/coffeecliff' },
-  { label: 'WhatsApp', sub: '+55 (35) 99919-4121', icon: <FaWhatsapp />, variant: 'forest', href: 'https://wa.me/5535999194121' },
-  { label: 'LinkedIn', sub: 'linkedin.com/in/coffeecliff', icon: '💼', variant: 'sky', href: 'https://linkedin.com/in/coffeecliff' },
+  { label: 'GitHub', sub: 'github.com/coffeecliff', icon: <FaGithub style={{ color: '#171717' }} />, variant: 'aurora', href: 'https://github.com/coffeecliff' },
+  { label: 'WhatsApp', sub: '+55 (35) 99919-4121', icon: <FaWhatsapp style={{ color: '#25D366' }} />, variant: 'aurora', href: 'https://wa.me/5535999194121' },
+  { label: 'LinkedIn', sub: 'linkedin.com/in/coffeecliff', icon: '💼', variant: 'aurora', href: 'https://linkedin.com/in/coffeecliff' },
   { label: 'E-mail', sub: 'cauaneves976@gmail.com', icon: '📧', variant: 'aurora', href: 'mailto:cauaneves976@gmail.com' },
 ]
 
@@ -450,7 +440,7 @@ function ContatoSection() {
 
           <AeroPanel useBoxStyle variant="glass" className="contato-quote-panel">
             <p className="contato-quote">
-              "Adoro novos desafios — seja um projeto pequeno ou uma arquitetura complexa,
+              "Adoro novos desafios! Seja um projeto pequeno ou com um ,
               estou aqui para construir algo incrível juntos."
             </p>
           </AeroPanel>

@@ -14,7 +14,7 @@ html, body, .aero-scene {
   background-position: center !important;
   background-attachment: fixed !important;
   background-repeat: no-repeat !important;
-  overflow-x: hidden; /* 🌟 ADICIONE ISTO AQUI */
+  overflow-x: hidden; 
 
   -webkit-font-smoothing: antialiased;
   -webkit-user-select: none;
@@ -43,7 +43,7 @@ html, body, .aero-scene {
   --aero-aqua-4: #12a98e;
   --aero-aqua-5: #097a68;
 
-  --aero-forest-1: #ddf2dc;
+  --aero-forest-1: #f2dce4;
   --aero-forest-2: #a3dfa0;
   --aero-forest-3: #5ec65a;
   --aero-forest-4: #2da629;
@@ -53,7 +53,7 @@ html, body, .aero-scene {
   --aero-aurora-mid:   #64c8f0;
   --aero-aurora-end:   #9ab8f8;
 
-  /* Glass surfaces */
+  /* Glass surfaces  aaaaaa */
   --aero-glass-white:   rgba(255, 255, 255, 0.55);
   --aero-glass-tint:    rgba(180, 230, 255, 0.32);
   --aero-glass-dark:    rgba(10, 60, 90, 0.18);
@@ -139,7 +139,7 @@ html, body, .aero-scene {
       180deg,
       rgba(255,255,255, calc(var(--nav-form) * 0.52)) 0%,
       rgba(255,255,255, calc(var(--nav-form) * 0.06)) 48%,
-      rgba(0, 255, 221, 0) 100%
+      rgba(9, 255, 222, 0) 100%
     ),
     linear-gradient(
       155deg,
@@ -747,6 +747,13 @@ html, body, .aero-scene {
   cursor: pointer;
   transition: transform 0.35s cubic-bezier(0.16,1,0.3,1), box-shadow 0.35s ease;
 }
+
+/* Nos cards da linha do tempo, a ponta clara do degradê usa um tom mais
+   escuro da mesma cor (em vez de escurecer o card todo), para o texto
+   branco ficar legível sem perder a identidade da cor. */
+.timeline-node-card.aero-box--sky    { --_bg-start: color-mix(in srgb, var(--aero-sky-4) 55%, black); }
+.timeline-node-card.aero-box--aqua   { --_bg-start: color-mix(in srgb, var(--aero-aqua-4) 55%, black); }
+.timeline-node-card.aero-box--forest { --_bg-start: color-mix(in srgb, var(--aero-forest-4) 55%, black); }
 
 .timeline-node--left .timeline-node-card { margin-right: auto; padding-right: 6%; }
 .timeline-node--right .timeline-node-card { margin-left: auto; padding-left: 6%; }

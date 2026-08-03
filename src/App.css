@@ -1014,7 +1014,8 @@ html, body, .aero-scene {
   margin-bottom: 7px;
 }
 
-.skill-icon { font-size: 18px; flex-shrink: 0; }
+.skill-icon { font-size: 18px; flex-shrink: 0; display: inline-flex; align-items: center; }
+.skill-icon svg { width: 18px; height: 18px; }
 
 .skill-name {
   font-size: 0.95rem;

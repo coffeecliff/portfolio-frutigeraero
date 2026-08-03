@@ -8,6 +8,11 @@ import { FolderViewer3D } from './components/models_viewers/FolderViewer3D'
 import { BallUserViewer3D } from './components/models_viewers/BallUserViewer3D'
 import { AeroMusicPlayer } from './components/musicPlayer'
 import { FaGithub, FaWhatsapp } from 'react-icons/fa'
+import {
+  SiReact, SiTypescript, SiJavascript, SiCss, SiTailwindcss,
+  SiThreedotjs, SiNodedotjs, SiGithub, SiVite, SiVercel,
+  SiHtml5,
+} from 'react-icons/si'
 
 import './App.css'
 import NavBar from './components/navbar'
@@ -357,20 +362,22 @@ function ProjetosSection() {
 // ── Seção Skills ─────────────────────────────────────────────
 function SkillsSection() {
   const skills = [
-    { nome: 'React / Next.js', nivel: 95, ic: '⚛️', var: 'sky' },
-    { nome: 'TypeScript', nivel: 80, ic: '📘', var: 'aurora' },
-    { nome: 'JavaScript', nivel: 80, ic: '📘', var: 'aurora' },
-    { nome: 'CSS / Animations', nivel: 95, ic: '🎨', var: 'aqua' },
-    { nome: 'Tailwind', nivel: 95, ic: '🌊', var: 'aqua' },
-    { nome: 'Three.js / WebGL', nivel: 80, ic: '🪐', var: 'forest' },
-    { nome: 'Node.js / APIs', nivel: 75, ic: '🔧', var: 'sky' },
+    { nome: 'React / Next.js', nivel: 95, ic: <SiReact color="#131313" />, var: 'sky' },
+    { nome: 'TypeScript', nivel: 80, ic: <SiTypescript color="#131313" />, var: 'aurora' },
+    { nome: 'JavaScript', nivel: 80, ic: <SiJavascript color="#131313" />, var: 'aurora' },
+    { nome: 'CSS / Animations', nivel: 95, ic: <SiCss color="#131313" />, var: 'aqua' },
+    { nome: 'Tailwind', nivel: 95, ic: <SiTailwindcss color="#131313" />, var: 'aqua' },
+    { nome: 'Three.js / WebGL', nivel: 80, ic: <SiThreedotjs color="#131313" />, var: 'forest' },
+    { nome: 'Node.js / APIs', nivel: 75, ic: <SiNodedotjs color="#131313" />, var: 'sky' },
 
   ]
 
   const ferramentas = [
-    { ic: '🐙', nome: 'GitHub' }, { ic: '🔥', nome: 'Vite' }, 
-    { ic: '🌊', nome: 'Tailwind' }, { ic: '🚀', nome: 'Vercel' },
-    { ic: '🪐', nome: 'Three.js' }, { ic: '🔥', nome: 'Vite' },
+    { ic: <SiCss color="131313" />, nome: 'CSS' }, { ic: <SiHtml5 color="#131313" />, nome: 'Vite' },
+    { ic: <SiJavascript color="#131313" />, nome: 'JScript' }, { ic: <SiTypescript color="#131313" />, nome: 'TScript' },
+    { ic: <SiGithub color="#131313" />, nome: 'GitHub' }, { ic: <SiVite color="#131313" />, nome: 'Vite' },
+    { ic: <SiTailwindcss color="#131313" />, nome: 'Tailwind' }, { ic: <SiVercel color="#131313" />, nome: 'Vercel' },
+    { ic: <SiThreedotjs color="#131313" />, nome: 'Three.js' }, { ic: <SiNodedotjs color="#131313" />, nome: 'Node.js' },
   ]
 
   return (

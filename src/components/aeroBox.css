@@ -100,6 +100,11 @@
   backdrop-filter: blur(4px);
 }
 
+.aero-box-icon svg {
+  width: calc(var(--_icon-size) * 0.52);
+  height: calc(var(--_icon-size) * 0.52);
+}
+
 /* ── Text area ────────────────────────────────────────────── */
 .aero-box-body {
   display: flex;

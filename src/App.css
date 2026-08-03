@@ -710,6 +710,14 @@ html, body, .aero-scene {
   transition: transform 0.35s cubic-bezier(0.16,1,0.3,1), box-shadow 0.35s ease;
 }
 
+.timeline-node-icon {
+  width: 22px;
+  height: 22px;
+  object-fit: contain;
+  filter: drop-shadow(0 1px 2px rgba(0,20,40,0.35));
+  pointer-events: none;
+}
+
 .timeline-node-dot::after {
   content: '';
   position: absolute;
@@ -920,8 +928,18 @@ html, body, .aero-scene {
 }
 
 .projeto-destaque-icone {
-  font-size: 88px;
+  width: 88px;
+  height: 88px;
+  object-fit: contain;
   filter: drop-shadow(0 6px 14px rgba(0,40,80,0.30));
+}
+
+.projeto-filtro-icone {
+  width: 16px;
+  height: 16px;
+  object-fit: contain;
+  margin-right: 6px;
+  vertical-align: middle;
 }
 
 .projeto-destaque-corpo {
@@ -1113,6 +1131,7 @@ html, body, .aero-scene {
   .timeline-line { left: 20px; }
   .timeline-node--left, .timeline-node--right { justify-content: flex-start; }
   .timeline-node-dot { left: 20px; width: 36px; height: 36px; font-size: 15px; }
+  .timeline-node-icon { width: 18px; height: 18px; }
   .timeline-node-card,
   .timeline-node--left .timeline-node-card,
   .timeline-node--right .timeline-node-card {

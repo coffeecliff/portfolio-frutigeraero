@@ -180,22 +180,22 @@ function SobreSection() {
 function TrajetoriaSection() {
   const eventos = [
     {
-      id: 'ti1', ano: '2023 - 2025', ic: '🖥️', variant: 'forest', titulo: 'Curso Técnico em Informática',
+      id: 'ti1', ano: '2023 - 2025', ic: '/assets/pc_icon.png', variant: 'forest', titulo: 'Curso Técnico em Informática',
       resumo: 'Curso técnico de 2 anos focado no ciclo completo de desenvolvimento de software, infraestrutura de redes e manutenção preventiva/corretiva de computadores.',
       detalhe: 'Montagem e manutenção de hardware, administração de redes e servidores, desenvolvimento de software.',
     },
     {
-      id: 'ti2', ano: '2023 - 2024', ic: '🖥️', variant: 'aqua', titulo: 'Módulo I do Senac Tec',
+      id: 'ti2', ano: '2023 - 2024', ic: '/assets/pc_icon.png', variant: 'aqua', titulo: 'Módulo I do Senac Tec',
       resumo: 'Primeiro módulo do curso Senac Tec, com foco no desenvolvimento do Frontend de aplicações web, englobando a construção de interfaces responsivas, estruturação de código e boas práticas de UI/UX.',
       detalhe: 'Desenvolvimento web colaborativo em equipe e simulação de rotinas de projetos Frontend.',
     },
     {
-      id: 'ti3', ano: '2024 - 2025', ic: '🖥️', variant: 'forest', titulo: 'Módulo II do Senac Tec',
+      id: 'ti3', ano: '2024 - 2025', ic: '/assets/pc_icon.png', variant: 'forest', titulo: 'Módulo II do Senac Tec',
       resumo: 'Segundo módulo do curso Senac Tec, com foco na engenharia completa (Full Stack) de aplicações web, abrangendo a integração ponta a ponta entre interfaces de usuário, regras de negócio e bancos de dados.',
       detalhe: 'Atuação em ambiente de desenvolvimento web em equipe focado em arquitetura Frontend e Backend.',
     },
     {
-      id: 'ti4', ano: '2025 - 2026', ic: '🖥️', variant: 'aqua', titulo: 'Módulo III do Senac Tec',
+      id: 'ti4', ano: '2025 - 2026', ic: '/assets/pc_icon.png', variant: 'aqua', titulo: 'Módulo III do Senac Tec',
       resumo: 'Terceiro módulo do curso Senac Tec, com foco no desenvolvimento de aplicativos mobile, integrando a criação de interfaces móveis com serviços, consumo de APIs e gestão de dados..',
       detalhe: 'Desenvolvimento colaborativo de aplicativos móveis em equipe, cobrindo etapas de Frontend e Backend.',
     },
@@ -263,7 +263,7 @@ function TrajetoriaSection() {
                 aria-label={`${ev.ano}: ${ev.titulo}`}
                 onClick={() => setOpenId(isOpen ? null : ev.id)}
               >
-                <span>{ev.ic}</span>
+                <img src={ev.ic} alt="" className="timeline-node-icon" />
               </button>
 
               <AeroPanel useBoxStyle variant={ev.variant} className="timeline-node-card">
@@ -295,12 +295,12 @@ function TrajetoriaSection() {
 // ── Seção Projetos ───────────────────────────────────────────
 function ProjetosSection() {
   const projetos = [
-    { nome: 'AeroUI Kit', desc: 'Design system completo no estilo Frutiger Aero para React.', cat: 'OSS', ic: '💎', variant: 'aurora', tech: ['React', 'CSS', 'Figma'] },
-    { nome: 'CloudSync Dashboard', desc: 'Painel de gerenciamento de arquivos com sincronização em tempo real.', cat: 'Web App', ic: '☁️', variant: 'sky', tech: ['React', 'Node.js', 'Socket.io'] },
-    { nome: 'FlorApp', desc: 'App mobile de registro de fauna para pesquisadores de campo.', cat: 'Mobile', ic: '🌿', variant: 'forest', tech: ['React Native', 'Maps API'] },
-    { nome: 'Cosmos Viewer', desc: 'Visualizador 3D interativo do sistema solar com dados da NASA.', cat: '3D / Visual', ic: '🪐', variant: 'aqua', tech: ['Three.js', 'WebGL', 'D3'] },
-    { nome: 'SpendMind', desc: 'App de finanças pessoais com análise de gastos por IA.', cat: 'Mobile', ic: '💸', variant: 'sky', tech: ['React Native', 'AI', 'Charts'] },
-    { nome: 'PixelGrid', desc: 'Editor colaborativo de pixel art no browser com multiplayer.', cat: 'Web App', ic: '🎨', variant: 'aurora', tech: ['Canvas', 'WebRTC', 'React'] },
+    { nome: 'AeroUI Kit', desc: 'Design system completo no estilo Frutiger Aero para React.', cat: 'OSS', ic: '/assets/pc_icon.png', variant: 'aurora', tech: ['React', 'CSS', 'Figma'] },
+    { nome: 'CloudSync Dashboard', desc: 'Painel de gerenciamento de arquivos com sincronização em tempo real.', cat: 'Web App', ic: '/assets/pc_icon.png', variant: 'sky', tech: ['React', 'Node.js', 'Socket.io'] },
+    { nome: 'FlorApp', desc: 'App mobile de registro de fauna para pesquisadores de campo.', cat: 'Mobile', ic: '/assets/pc_icon.png', variant: 'forest', tech: ['React Native', 'Maps API'] },
+    { nome: 'Cosmos Viewer', desc: 'Visualizador 3D interativo do sistema solar com dados da NASA.', cat: '3D / Visual', ic: '/assets/pc_icon.png', variant: 'aqua', tech: ['Three.js', 'WebGL', 'D3'] },
+    { nome: 'SpendMind', desc: 'App de finanças pessoais com análise de gastos por IA.', cat: 'Mobile', ic: '/assets/pc_icon.png', variant: 'sky', tech: ['React Native', 'AI', 'Charts'] },
+    { nome: 'PixelGrid', desc: 'Editor colaborativo de pixel art no browser com multiplayer.', cat: 'Web App', ic: '/assets/pc_icon.png', variant: 'aurora', tech: ['Canvas', 'WebRTC', 'React'] },
   ]
 
   const [selecionado, setSelecionado] = useState(projetos[0].nome)
@@ -320,7 +320,7 @@ function ProjetosSection() {
             variant={selecionado === p.nome ? 'sky' : 'glass'}
             onClick={() => setSelecionado(p.nome)}
           >
-            <span style={{ marginRight: 6 }}>{p.ic}</span>{p.nome}
+            <img src={p.ic} alt="" className="projeto-filtro-icone" />{p.nome}
           </AeroBtn>
         ))}
       </div>
@@ -336,7 +336,7 @@ function ProjetosSection() {
           {ativo.img ? (
             <img src={ativo.img} alt={ativo.nome} />
           ) : (
-            <span className="projeto-destaque-icone">{ativo.ic}</span>
+            <img src={ativo.ic} alt="" className="projeto-destaque-icone" />
           )}
         </div>
 
@@ -357,18 +357,20 @@ function ProjetosSection() {
 // ── Seção Skills ─────────────────────────────────────────────
 function SkillsSection() {
   const skills = [
-    { nome: 'React / Next.js', nivel: 94, ic: '⚛️', var: 'sky' },
-    { nome: 'TypeScript', nivel: 88, ic: '📘', var: 'aurora' },
-    { nome: 'CSS / Animations', nivel: 96, ic: '🎨', var: 'aqua' },
-    { nome: 'Three.js / WebGL', nivel: 76, ic: '🪐', var: 'forest' },
-    { nome: 'Node.js / APIs', nivel: 82, ic: '🔧', var: 'sky' },
-    { nome: 'Figma / Design', nivel: 90, ic: '💎', var: 'aurora' },
+    { nome: 'React / Next.js', nivel: 95, ic: '⚛️', var: 'sky' },
+    { nome: 'TypeScript', nivel: 80, ic: '📘', var: 'aurora' },
+    { nome: 'JavaScript', nivel: 80, ic: '📘', var: 'aurora' },
+    { nome: 'CSS / Animations', nivel: 95, ic: '🎨', var: 'aqua' },
+    { nome: 'Tailwind', nivel: 95, ic: '🌊', var: 'aqua' },
+    { nome: 'Three.js / WebGL', nivel: 80, ic: '🪐', var: 'forest' },
+    { nome: 'Node.js / APIs', nivel: 75, ic: '🔧', var: 'sky' },
+
   ]
 
   const ferramentas = [
-    { ic: '🐙', nome: 'GitHub' }, { ic: '🐳', nome: 'Docker' }, { ic: '🔥', nome: 'Vite' },
-    { ic: '🌊', nome: 'Tailwind' }, { ic: '🧪', nome: 'Vitest' }, { ic: '🚀', nome: 'Vercel' },
-    { ic: '📦', nome: 'pnpm' }, { ic: '🎯', nome: 'Storybook' },
+    { ic: '🐙', nome: 'GitHub' }, { ic: '🔥', nome: 'Vite' }, 
+    { ic: '🌊', nome: 'Tailwind' }, { ic: '🚀', nome: 'Vercel' },
+    { ic: '🪐', nome: 'Three.js' }, { ic: '🔥', nome: 'Vite' },
   ]
 
   return (
@@ -560,9 +562,9 @@ export default function App() {
           <div ref={contatoRef} className="reveal"><ContatoSection /></div>
 
           <BallUserViewer3D top='8%' left='78%' color='#6fac36' />
-          <BallUserViewer3D top='50%' left='87%' color='#d3b634' />
           <BallUserViewer3D top='3%' left='50%' color='#6fac36' />
-          <FolderViewer3D top='34%' left='65%' />
+          <BallUserViewer3D top='92.5%' left='17%' color='#d3b634' />
+          <FolderViewer3D top='36%' left='67%' />
 
         </main>
 

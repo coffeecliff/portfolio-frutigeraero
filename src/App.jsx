@@ -155,26 +155,25 @@ function SobreSection() {
             </AeroPanel>
           </div>
           <p className="sobre-text">
-            Desenvolvedor apaixonado por criar interfaces que mesclam estética e função.
+            Olá! Meu nome é Cauã tenho 19 anos, e sou desenvolvedor apaixonado por criar interfaces que mesclam estética e função.
             Me especializo em React, animações CSS e design systems com foco em performance
             e acessibilidade.
           </p>
           <p className="sobre-text" style={{ marginTop: 12 }}>
-            Quando não estou codando, estou explorando novos designs, jogando jogos indie
+            Quando não estou codando, estou explorando novos designs, fazendo jogos
             ou ouvindo música lo-fi enquanto tomo café ☕
           </p>
           <div style={{ marginTop: 16, display: 'flex', gap: 8, flexWrap: 'wrap' }}>
-            {['React', 'TypeScript', 'CSS', 'Three.js', 'Figma', 'Node.js'].map(tag => (
+            {['React', 'TypeScript', 'CSS', 'Three.js', 'Node.js'].map(tag => (
               <span key={tag} className="tech-tag">{tag}</span>
             ))}
           </div>
         </AeroPanel>
 
         <div className="sobre-side">
-          <AeroBox variant="aqua" label="Localização" sub="Belo Horizonte, MG" icon={<span>📍</span>} />
-          <AeroBox variant="aqua" label="Experiência" sub="3+ anos no mercado" icon={<span>💼</span>} />
-          <AeroBox variant="aqua" label="Formação" sub="Ciência da Computação" icon={<span>🎓</span>} />
-          <AeroBox variant="aqua" label="Idiomas" sub="PT-BR" icon={<span>🌐</span>} />
+
+          <AeroBox variant="aqua" label="Formação" sub="Técnico em Informática" icon={<span>🎓</span>} />
+          <AeroBox variant="aqua" label="Idiomas" sub="PT-BR / EN" icon={<span>🌐</span>} />
         </div>
       </div>
     </section>
@@ -190,17 +189,17 @@ function TrajetoriaSection() {
       detalhe: 'Montagem e manutenção de hardware, administração de redes e servidores, desenvolvimento de software.',
     },
     {
-      id: 'ti2', ano: '2023 - 2024', ic: '/assets/pc_icon.png', variant: 'aqua', titulo: 'Módulo I do Senac Tec',
+      id: 'ti2', ano: '2025', ic: '/assets/pc_icon.png', variant: 'aqua', titulo: 'Módulo I do Senac Tec',
       resumo: 'Primeiro módulo do curso Senac Tec, com foco no desenvolvimento do Frontend de aplicações web, englobando a construção de interfaces responsivas, estruturação de código e boas práticas de UI/UX.',
       detalhe: 'Desenvolvimento web colaborativo em equipe e simulação de rotinas de projetos Frontend.',
     },
     {
-      id: 'ti3', ano: '2024 - 2025', ic: '/assets/pc_icon.png', variant: 'forest', titulo: 'Módulo II do Senac Tec',
+      id: 'ti3', ano: '2025', ic: '/assets/pc_icon.png', variant: 'forest', titulo: 'Módulo II do Senac Tec',
       resumo: 'Segundo módulo do curso Senac Tec, com foco na engenharia completa (Full Stack) de aplicações web, abrangendo a integração ponta a ponta entre interfaces de usuário, regras de negócio e bancos de dados.',
       detalhe: 'Atuação em ambiente de desenvolvimento web em equipe focado em arquitetura Frontend e Backend.',
     },
     {
-      id: 'ti4', ano: '2025 - 2026', ic: '/assets/pc_icon.png', variant: 'aqua', titulo: 'Módulo III do Senac Tec',
+      id: 'ti4', ano: '2026', ic: '/assets/pc_icon.png', variant: 'aqua', titulo: 'Módulo III do Senac Tec',
       resumo: 'Terceiro módulo do curso Senac Tec, com foco no desenvolvimento de aplicativos mobile, integrando a criação de interfaces móveis com serviços, consumo de APIs e gestão de dados..',
       detalhe: 'Desenvolvimento colaborativo de aplicativos móveis em equipe, cobrindo etapas de Frontend e Backend.',
     },
@@ -300,12 +299,9 @@ function TrajetoriaSection() {
 // ── Seção Projetos ───────────────────────────────────────────
 function ProjetosSection() {
   const projetos = [
-    { nome: 'AeroUI Kit', desc: 'Design system completo no estilo Frutiger Aero para React.', cat: 'OSS', ic: '/assets/pc_icon.png', variant: 'aurora', tech: ['React', 'CSS', 'Figma'] },
-    { nome: 'CloudSync Dashboard', desc: 'Painel de gerenciamento de arquivos com sincronização em tempo real.', cat: 'Web App', ic: '/assets/pc_icon.png', variant: 'sky', tech: ['React', 'Node.js', 'Socket.io'] },
-    { nome: 'FlorApp', desc: 'App mobile de registro de fauna para pesquisadores de campo.', cat: 'Mobile', ic: '/assets/pc_icon.png', variant: 'forest', tech: ['React Native', 'Maps API'] },
-    { nome: 'Cosmos Viewer', desc: 'Visualizador 3D interativo do sistema solar com dados da NASA.', cat: '3D / Visual', ic: '/assets/pc_icon.png', variant: 'aqua', tech: ['Three.js', 'WebGL', 'D3'] },
-    { nome: 'SpendMind', desc: 'App de finanças pessoais com análise de gastos por IA.', cat: 'Mobile', ic: '/assets/pc_icon.png', variant: 'sky', tech: ['React Native', 'AI', 'Charts'] },
-    { nome: 'PixelGrid', desc: 'Editor colaborativo de pixel art no browser com multiplayer.', cat: 'Web App', ic: '/assets/pc_icon.png', variant: 'aurora', tech: ['Canvas', 'WebRTC', 'React'] },
+    { nome: 'Cuide+', desc: 'Site fictício de gerenciamento de psicólogos e pacientes.', cat: 'Web App', ic: '/assets/cuidemais_logo.svg', img: '/assets/cuidemais_print.png', variant: 'sky', tech: ['React', 'Node.js', 'Tailwind', 'JavaScript' ] },
+    { nome: 'Portal Turismo da Miku', desc: 'Agência de turismo fictícia inspirada na personagem e cantora Hatsune Miku (初音ミク).', cat: 'Web App', ic: '/assets/portalturismo_logo.png', img: '/assets/portalturismo_print.png', variant: 'aqua', tech: ['React', 'Node.js', 'Tailwind', 'JavaScript'] },
+
   ]
 
   const [selecionado, setSelecionado] = useState(projetos[0].nome)

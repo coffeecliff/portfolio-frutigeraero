@@ -572,7 +572,7 @@ export default function App() {
         </main>
 
         <footer className="portfolio-footer">
-          <span>✦ dev.studio — Cauã Cunha Neves © 2026</span>
+          <span>✦ NEO frutiger aero — Cauã Cunha Neves © 2026</span>
         </footer>
       </div>
     </body>

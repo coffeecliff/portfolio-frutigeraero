@@ -19,7 +19,7 @@ const translations = {
       miniStats: 'Visuais elegantes  •  Entregas de qualidade',
       scrollHint: '↓ Role para explorar',
       features: [
-        { label: 'Design Futurista', sub: 'Estética moderna inspirada no visual Frutiger Aero.' },
+        { label: 'Design Futurista', sub: 'Visuais modernos de sua escolha.' },
         { label: 'Tecnologia & Performance', sub: 'Soluções rápidas, responsivas e otimizadas.' },
         { label: 'Foco em Experiência', sub: 'Interfaces intuitivas que conectam e geram impacto.' },
         { label: 'Personalizado', sub: 'Cada projeto é único, feito para o seu objetivo.' },

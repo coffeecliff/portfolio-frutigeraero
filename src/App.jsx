@@ -7,6 +7,7 @@ import { AeroBox, AeroPanel, AeroGrid, AeroBtn } from './components/aeroBox'
 import { FolderViewer3D } from './components/models_viewers/FolderViewer3D'
 import { BallUserViewer3D } from './components/models_viewers/BallUserViewer3D'
 import { AeroMusicPlayer } from './components/musicPlayer'
+import { useIsMobile } from './hooks/useIsMobile'
 import { FaGithub, FaWhatsapp } from 'react-icons/fa'
 import {
   SiReact, SiTypescript, SiJavascript, SiCss, SiTailwindcss,
@@ -36,6 +37,7 @@ const featureIcons = [
 // ── Seção Hero ───────────────────────────────────────────────
 function HeroSection({ navTo }) {
   const { t } = useLanguage()
+  const isMobile = useIsMobile(900)
   const parallaxRef = useRef(null)
 
   // ── Parallax via scroll ──────────────────────────────────
@@ -95,19 +97,24 @@ function HeroSection({ navTo }) {
           </p>
         </div>
 
-        <div className="hero-right">
-          {/* 🌟 Composição do player: bolhas 3D + AeroMusicPlayer */}
-          <div className="hero-player-composition">
-            {/* Encaixe aqui os dois <BallUserViewer3D/> ao redor do player.
-                Posições sugeridas (ajuste conforme o resultado visual): */}
-            {/* <BallUserViewer3D top="4%" left="2%" color="#6fac36" /> */}
-            {/* <BallUserViewer3D top="66%" left="78%" color="#3aa8d8" /> */}
+        {/* Em telas pequenas o player completo (com o modelo 3D de largura
+            fixa) quebrava o layout da Hero — some daqui e reaparece
+            simplificado (sem 3D) dentro do menu hambúrguer, ver navbar.jsx. */}
+        {!isMobile && (
+          <div className="hero-right">
+            {/* 🌟 Composição do player: bolhas 3D + AeroMusicPlayer */}
+            <div className="hero-player-composition">
+              {/* Encaixe aqui os dois <BallUserViewer3D/> ao redor do player.
+                  Posições sugeridas (ajuste conforme o resultado visual): */}
+              {/* <BallUserViewer3D top="4%" left="2%" color="#6fac36" /> */}
+              {/* <BallUserViewer3D top="66%" left="78%" color="#3aa8d8" /> */}
 
-            <div className="hero-music-player-scale">
-              <AeroMusicPlayer />
-            </div> 
+              <div className="hero-music-player-scale">
+                <AeroMusicPlayer />
+              </div>
+            </div>
           </div>
-        </div>
+        )}
 
       </div>
 
@@ -199,7 +206,7 @@ function SobreSection() {
 
         </AeroPanel>
 
-        <div className="sobre-side">
+        <div className="sobre-side sobre-side--deco">
           <AeroBox variant="forest" label="~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~" icon={<span>🌱</span>} />
           <AeroBox variant="aqua" label="~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~" icon={<span>☘️</span>} />
           <AeroBox variant="aurora" label="~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~" icon={<span>🌊</span>} />

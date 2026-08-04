@@ -236,6 +236,64 @@ html, body, .aero-scene {
   text-align: center;
 }
 
+/* ── Menu hambúrguer (só existe abaixo de 901px, ver @media) ──────── */
+.portfolio-nav-hamburger {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+  width: 38px;
+  height: 38px;
+  padding: 0;
+  border: 1px solid rgba(255,255,255,0.55);
+  border-radius: 9999px;
+  background: rgba(200,235,255,0.30);
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+.portfolio-nav-hamburger span {
+  display: block;
+  width: 16px;
+  height: 2px;
+  border-radius: 2px;
+  background: color-mix(in srgb, #123049 calc((1 - var(--nav-form)) * 100%), #ffffff calc(var(--nav-form) * 100%));
+  transition: transform 0.22s ease, opacity 0.22s ease, background 0.7s ease;
+}
+
+.portfolio-nav-hamburger.is-open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.portfolio-nav-hamburger.is-open span:nth-child(2) { opacity: 0; }
+.portfolio-nav-hamburger.is-open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+/* Menu suspenso com os links de seção — abre embaixo da navbar no mobile */
+.portfolio-nav-mobile-panel {
+  display: none;
+}
+
+.portfolio-nav-mobile-btn {
+  background: transparent;
+  border: none;
+  border-radius: var(--aero-radius-md);
+  padding: 12px 14px;
+  text-align: left;
+  font-family: 'Nunito', sans-serif;
+  font-size: 0.95rem;
+  font-weight: 800;
+  color: #123049;
+  cursor: pointer;
+  transition: background 0.15s ease;
+}
+
+.portfolio-nav-mobile-btn:hover {
+  background: rgba(0,100,160,0.10);
+}
+
+.portfolio-nav-mobile-btn.active {
+  background: rgba(30,168,140,0.18);
+  color: var(--aero-aqua-5);
+}
+
 .portfolio-nav-btn {
   background: transparent;
   border: none;
@@ -772,6 +830,9 @@ html, body, .aero-scene {
 
 .timeline-node-card {
   width: 44%;
+  /* Mais respiro entre o texto e a borda do card do que o padding padrão
+     do AeroBox (16px 20px). */
+  padding: 22px 26px;
   cursor: pointer;
   transition: transform 0.35s cubic-bezier(0.16,1,0.3,1), box-shadow 0.35s ease;
 }
@@ -1135,19 +1196,62 @@ html, body, .aero-scene {
 
 /* ── Responsive ───────────────────────────────────────────── */
 @media (max-width: 900px) {
+  /* ── Simplificação geral: layout empilhado em 1 coluna, menos ruído ── */
   .hero-content { flex-direction: column; }
-  .hero-right { order: -1; }
-  .hero-music-player-scale { transform: scale(0.85); }
   .hero-bottom-row { grid-template-columns: 1fr; }
   .sobre-grid { grid-template-columns: 1fr; }
   .skills-layout { grid-template-columns: 1fr; }
   .contato-layout { grid-template-columns: 1fr; }
-  .projeto-destaque-panel { flex-direction: column; }
-  .projeto-destaque-imagem { flex-basis: auto; min-height: 160px; }
-  .portfolio-nav-links { display: none; }
+  /* !important necessário: a regra base de .projeto-destaque-panel também
+     usa !important em flex-direction/align-items, então sem !important aqui
+     ela vence mesmo vindo depois no arquivo — o texto ficava ao lado da
+     imagem em vez de embaixo. */
+  .projeto-destaque-panel { flex-direction: column !important; align-items: stretch !important; }
+  /* Altura fixa (não só mínima!) — sem isso o `height: 100%` do <img>
+     (App.css .projeto-destaque-imagem img) não tem referência e a imagem
+     renderiza no tamanho original, gigante, estourando o card. */
+  .projeto-destaque-imagem { flex-basis: auto; height: 220px; min-height: 0; }
   .portfolio-section { padding: 60px 20px; }
+  /* +20% de espaço antes do conteúdo da Hero (120px → 144px), pra não ficar
+     colada no menu hambúrguer. Selector composto (.portfolio-section.hero-section)
+     pra ter mais especificidade que a regra genérica acima e realmente vencer,
+     já que ambas as classes estão no mesmo elemento (ver App.jsx). */
+  .portfolio-section.hero-section { padding-top: 144px; }
   .section-title { font-size: 1.9rem; }
   .hero-title { font-size: 2.88rem; }
+
+  /* Remove elementos puramente decorativos que só pesam a tela pequena
+     (os "~~~" preenchendo a coluna lateral de "O que é Frutiger Aero") —
+     mantém só o primeiro, o resto era só enfeite repetido. */
+  .sobre-side--deco .aero-box:nth-child(n+2) {
+    display: none;
+  }
+
+  /* ── Navbar: troca os links em linha pelo menu hambúrguer ── */
+  .portfolio-nav-links { display: none; }
+  .portfolio-nav-cta-full { display: none; }
+  .portfolio-nav-hamburger { display: flex; }
+  .portfolio-nav-mobile-panel.is-open {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    margin: 4px 10px 12px;
+    padding: 10px;
+    border-radius: var(--aero-radius-lg);
+    background: rgba(255,255,255,0.55);
+    backdrop-filter: blur(20px) saturate(1.6);
+    -webkit-backdrop-filter: blur(20px) saturate(1.6);
+    border: 1px solid rgba(255,255,255,0.6);
+    box-shadow: var(--aero-shadow-md);
+  }
+
+  /* Player compacto (sem modelo 3D) que substitui o AeroMusicPlayer da
+     Hero quando a tela é pequena — ver navbar.jsx / musicPlayer.jsx. */
+  .portfolio-nav-mobile-player {
+    margin-top: 8px;
+    padding-top: 12px;
+    border-top: 1px solid rgba(0,80,140,0.14);
+  }
 
   .timeline-line { left: 20px; }
   .timeline-node--left, .timeline-node--right { justify-content: flex-start; }
@@ -1159,7 +1263,11 @@ html, body, .aero-scene {
     width: 100%;
     margin-left: 52px;
     margin-right: 0;
-    padding: 0;
+    /* Mantém o padding do card (só zera os 6% extras de padding-left/right
+       que existiam pra afastar o card do outro lado da trilha central,
+       inútil agora que é 1 coluna só) — sem isso o texto ficava colado
+       na borda. */
+    padding: 22px 26px;
   }
 }
 

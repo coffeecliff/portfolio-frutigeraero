@@ -28,14 +28,14 @@ function Modelo3D({ spinCounter }) {
             groupRef.current.rotation.y = THREE.MathUtils.damp(
                 groupRef.current.rotation.y,
                 targetRotation.current,
-                5, 
+                5,
                 delta
             )
 
             // 🌟 Efeito de Flutuação (Senoide)
-            const baseY = -3.0 
-            const floatSpeed = 1.5 
-            const floatAmplitude = 0.25 
+            const baseY = -3.0
+            const floatSpeed = 1.5
+            const floatAmplitude = 0.25
 
             groupRef.current.position.y = baseY + Math.sin(state.clock.elapsedTime * floatSpeed) * floatAmplitude
         }
@@ -48,25 +48,21 @@ function Modelo3D({ spinCounter }) {
     )
 }
 
-export function AeroMusicPlayer() {
-    // Estados do Music Player
+// Lógica de player (playlist/play-pause/skip) compartilhada entre a versão
+// completa (com o modelo 3D, usada na Hero em telas grandes) e a versão
+// compacta (sem 3D, usada no menu hambúrguer em telas pequenas).
+function useAeroMusicPlayer() {
     const [currentSongIndex, setCurrentSongIndex] = useState(0)
     const [isPlaying, setIsPlaying] = useState(false)
+    const [spinCounter, setSpinCounter] = useState(0)
     const audioRef = useRef(null)
 
-    // Estados do Visualizador 3D
-    const [isDragging, setIsDragging] = useState(false)
-    const [spinCounter, setSpinCounter] = useState(0)
-    
-    const light = '#ffffff'
-    const light_intensity = 0.001
-    
     const currentSong = playlist[currentSongIndex]
 
     // Inicialização Única do Objeto de Áudio
     useEffect(() => {
         audioRef.current = new Audio(currentSong.src)
-        audioRef.current.loop = true 
+        audioRef.current.loop = true
 
         return () => {
             if (audioRef.current) {
@@ -79,7 +75,7 @@ export function AeroMusicPlayer() {
     useEffect(() => {
         if (audioRef.current) {
             audioRef.current.src = currentSong.src
-            
+
             // Se já estava tocando, continua tocando a nova faixa imediatamente
             if (isPlaying) {
                 audioRef.current.play().catch(err => {
@@ -113,6 +109,18 @@ export function AeroMusicPlayer() {
         setCurrentSongIndex(prev => (prev + 1) % playlist.length)
     }
 
+    return { currentSong, isPlaying, spinCounter, togglePlay, handlePrev, handleNext }
+}
+
+export function AeroMusicPlayer() {
+    const { currentSong, isPlaying, spinCounter, togglePlay, handlePrev, handleNext } = useAeroMusicPlayer()
+
+    // Estado do Visualizador 3D
+    const [isDragging, setIsDragging] = useState(false)
+
+    const light = '#ffffff'
+    const light_intensity = 0.001
+
     return (
         <div style={{ padding: '10px', maxWidth: '500px', margin: '0 auto', marginLeft: '270px' }}>
             <style>{`
@@ -127,7 +135,7 @@ export function AeroMusicPlayer() {
                     will-change: transform;
                 }
                 .user-canvas-container.is-dragging {
-                    transform: scale(1.02); 
+                    transform: scale(1.02);
                 }
             `}</style>
 
@@ -187,6 +195,36 @@ export function AeroMusicPlayer() {
                 </div>
             </AeroBox>
         </div>
+    )
+}
+
+// Versão sem o visualizador 3D (sem <Canvas>/GLTF) — usada no menu
+// hambúrguer em telas pequenas, onde o player completo (com o modelo 3D
+// de tamanho fixo) era o que quebrava o layout da Hero.
+export function AeroMusicPlayerCompact({ className = '' }) {
+    const { currentSong, isPlaying, togglePlay, handlePrev, handleNext } = useAeroMusicPlayer()
+
+    return (
+        <AeroBox
+            variant="sky"
+            label={currentSong.title}
+            className={className}
+            style={{ width: '100%', display: 'flex' }}
+        >
+            <div style={{ display: 'flex', gap: '8px', alignItems: 'center', justifyContent: 'center', width: '100%' }}>
+                <AeroBtn variant="aqua" onClick={handlePrev} style={{ padding: '8px 12px' }}>
+                    ⏮
+                </AeroBtn>
+
+                <AeroBtn variant="aqua" onClick={togglePlay} style={{ padding: '8px 16px', fontWeight: 'bold' }}>
+                    {isPlaying ? "⏸" : "▶"}
+                </AeroBtn>
+
+                <AeroBtn variant="aqua" onClick={handleNext} style={{ padding: '8px 12px' }}>
+                    ⏭
+                </AeroBtn>
+            </div>
+        </AeroBox>
     )
 }
 

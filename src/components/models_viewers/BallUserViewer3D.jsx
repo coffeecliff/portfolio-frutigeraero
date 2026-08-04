@@ -83,7 +83,7 @@ export function BallUserViewer3D({ top, left, color = '#36a8ac', randomizeRotati
     // 🌟 2. Effect para monitorar o tamanho da tela em tempo real (compatível com SSR/Next.js)
     useEffect(() => {
         const checkScreenSize = () => {
-            setIsMobile(window.innerWidth <= 768)
+            setIsMobile(window.innerWidth <= 900)
         }
         
         checkScreenSize() // Roda ao montar o componente

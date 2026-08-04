@@ -400,7 +400,7 @@ function SkillsSection() {
   ]
 
   const ferramentas = [
-    { ic: <SiCss color="131313" />, nome: 'CSS' }, { ic: <SiHtml5 color="#131313" />, nome: 'Vite' },
+    { ic: <SiCss color="131313" />, nome: 'CSS' }, { ic: <SiHtml5 color="#131313" />, nome: 'HTML5' },
     { ic: <SiJavascript color="#131313" />, nome: 'JScript' }, { ic: <SiTypescript color="#131313" />, nome: 'TScript' },
     { ic: <SiGithub color="#131313" />, nome: 'GitHub' }, { ic: <SiVite color="#131313" />, nome: 'Vite' },
     { ic: <SiTailwindcss color="#131313" />, nome: 'Tailwind' }, { ic: <SiVercel color="#131313" />, nome: 'Vercel' },

@@ -200,9 +200,10 @@ function SobreSection() {
         </AeroPanel>
 
         <div className="sobre-side">
-          <AeroBox variant="aqua" icon={<span>☘️</span>} />
-          <AeroBox variant="sky" icon={<span>🌊</span>} />
-          
+          <AeroBox variant="forest" label="~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~" icon={<span>🌱</span>} />
+          <AeroBox variant="aqua" label="~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~" icon={<span>☘️</span>} />
+          <AeroBox variant="aurora" label="~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~" icon={<span>🌊</span>} />
+          <AeroBox variant="sky" label="~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~" icon={<span>🧊</span>} />
         </div>
       </div>
     </section>
@@ -387,13 +388,13 @@ function ProjetosSection() {
 // ── Seção Skills ─────────────────────────────────────────────
 function SkillsSection() {
   const skills = [
-    { nome: 'React / Next.js', nivel: 95, ic: <SiReact color="#131313" />, var: 'sky' },
-    { nome: 'TypeScript', nivel: 80, ic: <SiTypescript color="#131313" />, var: 'aurora' },
-    { nome: 'JavaScript', nivel: 80, ic: <SiJavascript color="#131313" />, var: 'aurora' },
-    { nome: 'CSS / Animations', nivel: 95, ic: <SiCss color="#131313" />, var: 'aqua' },
-    { nome: 'Tailwind', nivel: 95, ic: <SiTailwindcss color="#131313" />, var: 'aqua' },
-    { nome: 'Three.js / WebGL', nivel: 80, ic: <SiThreedotjs color="#131313" />, var: 'forest' },
-    { nome: 'Node.js / APIs', nivel: 75, ic: <SiNodedotjs color="#131313" />, var: 'sky' },
+    { nome: 'React / Next.js', nivel: 95, ic: <SiReact color="#131313" />, var: 'forest' },
+    { nome: 'TypeScript', nivel: 80, ic: <SiTypescript color="#131313" />, var: 'sky' },
+    { nome: 'JavaScript', nivel: 80, ic: <SiJavascript color="#131313" />, var: 'sky' },
+    { nome: 'CSS / Animations', nivel: 95, ic: <SiCss color="#131313" />, var: 'forest' },
+    { nome: 'Tailwind', nivel: 95, ic: <SiTailwindcss color="#131313" />, var: 'forest' },
+    { nome: 'Three.js / WebGL', nivel: 85, ic: <SiThreedotjs color="#131313" />, var: 'aqua' },
+    { nome: 'Node.js / APIs', nivel: 75, ic: <SiNodedotjs color="#131313" />, var: 'aurora' },
 
   ]
 
@@ -595,8 +596,8 @@ export default function App() {
 
           <BallUserViewer3D top='8%' left='78%' color='#6fac36' />
           <BallUserViewer3D top='3%' left='50%' color='#6fac36' />
-          <BallUserViewer3D top='92.5%' left='17%' color='#d3b634' />
-          <FolderViewer3D top='36%' left='67%' />
+          <BallUserViewer3D top='93%' left='17%' color='#d3b634' />
+          <FolderViewer3D top='51.5%' left='46%' />
 
         </main>
 

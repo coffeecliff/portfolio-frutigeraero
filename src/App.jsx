@@ -84,7 +84,7 @@ function HeroSection({ navTo }) {
               Ver projetos →
             </AeroBtn>
             <AeroBtn variant="glass" onClick={() => navTo?.('Sobre')}>
-              Saiba mais ⌄
+              Saiba mais 
             </AeroBtn>
           </div>
 
@@ -174,6 +174,35 @@ function SobreSection() {
 
           <AeroBox variant="aqua" label="Formação" sub="Técnico em Informática" icon={<span>🎓</span>} />
           <AeroBox variant="aqua" label="Idiomas" sub="PT-BR / EN" icon={<span>🌐</span>} />
+        </div>
+      </div>
+      
+
+      <div className="section-header">
+        <div style={{ margin: 150}}/>
+        <h2 className="section-title">O que é o Frutiger Aero?</h2>
+      </div>
+
+      <div className="sobre-grid">
+        <AeroPanel useBoxStyle variant="forest" size="lg" className="sobre-bio-panel">
+          <div className="sobre-avatar-row">
+            <div className="sobre-avatar">
+              <img src="/assets/pc_icon.png" style={{ width: '80%', height: '80%', objectFit: 'cover' }} alt="Avatar do Desenvolvedor" />
+            </div>
+            <AeroPanel useBoxStyle variant="aqua" size="lg" className="sobre-bio-panel">
+              <span className="sobre-name-label">Frutiger Aero</span>
+            </AeroPanel>
+          </div>
+          <p className="sobre-text" style={{ marginBottom: 50 }}>
+            Frutiger Aero é um estilo de design que prevaleceu de meados dos anos 2000 até o início dos anos 2010. Originou-se no design de interfaces de usuário, mas posteriormente influenciou diversas outras mídias. Foi nomeado em 2017 por Sofi Xian do Instituto de Pesquisa de Estética do Consumidor e ressurgiu em 2023 como uma estética da Internet, tornando-se popular entre a Geração Z como um objeto de nostalgia e estética, que traz a noção da imaginação das pessoas da época em relação ao futuro. A arte Frutiger Aero apresenta temas otimistas de tecnologia em harmonia com a natureza e frequentemente inclui imagens da natureza, cores vibrantes e elementos esqueumórficos.
+          </p>
+          
+        </AeroPanel>
+
+        <div className="sobre-side">
+          <AeroBox variant="aqua" icon={<span>☘️</span>} />
+          <AeroBox variant="sky" icon={<span>🌊</span>} />
+          
         </div>
       </div>
     </section>

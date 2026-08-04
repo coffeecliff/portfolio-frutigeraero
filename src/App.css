@@ -636,6 +636,15 @@ html, body, .aero-scene {
   color: rgba(255,255,255,0.92);
   text-shadow: 0 1px 2px rgba(0,30,60,0.3);
   margin: 0;
+  font-weight: 700;
+}
+
+.sobre-text-dark {
+  font-size: 0.98rem;
+  line-height: 1.75;
+  color: rgb(7, 100, 96);
+  margin: 0;
+  font-weight: 700;
 }
 
 .sobre-side {
@@ -793,7 +802,7 @@ html, body, .aero-scene {
   padding: 2px 10px;
   border-radius: 9999px;
   background: rgba(255,255,255,0.25);
-  color: rgba(255,255,255,0.95);
+  color: rgb(255, 255, 255);
   flex-shrink: 0;
 }
 
@@ -801,14 +810,14 @@ html, body, .aero-scene {
   flex: 1;
   font-size: 1.02rem;
   font-weight: 600;
-  color: rgba(255,255,255,0.97);
+  color: rgb(255, 255, 255);
   text-shadow: 0 1px 2px rgba(0,30,60,0.3);
 }
 
 .timeline-card-arrow {
   font-size: 1.2rem;
   font-weight: 700;
-  color: rgba(255,255,255,0.85);
+  color: rgb(255, 255, 255);
   flex-shrink: 0;
   width: 22px;
   text-align: center;
@@ -818,7 +827,7 @@ html, body, .aero-scene {
   margin: 4px 0 0;
   font-size: 0.9rem;
   line-height: 1.6;
-  color: rgba(255,255,255,0.88);
+  color: rgb(255, 255, 255);
   text-shadow: 0 1px 2px rgba(0,30,60,0.25);
 }
 
@@ -843,7 +852,7 @@ html, body, .aero-scene {
   border-top: 1px solid rgba(255,255,255,0.22);
   font-size: 0.88rem;
   line-height: 1.65;
-  color: rgba(255,255,255,0.82);
+  color: rgba(255, 255, 255, 0.979);
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -968,7 +977,7 @@ html, body, .aero-scene {
   margin: 0;
   font-size: 0.98rem;
   line-height: 1.55;
-  color: var(--_text-sub, var(--aero-text-muted));
+  color: #fff;
 }
 
 .projeto-destaque-tags {

@@ -1,19 +1,14 @@
 import { useEffect, useRef } from 'react'
 import { AeroPanel, AeroBtn } from './aeroBox'
+import { useLanguage } from '../i18n/LanguageContext'
 
-// Rótulos exibidos na navbar — a chave é o id interno da seção (usado por
-// navTo/IntersectionObserver em App.jsx), o valor é o texto visível.
-const SECTION_LABELS = {
-    Hero: 'Início',
-    Sobre: 'Sobre',
-    Trajetória: 'Trajetória',
-    Projetos: 'Projetos',
-    Skills: 'Skills',
-    Contato: 'Contato',
-}
+// Ordem das seções exibidas na navbar — os rótulos vêm de t.nav (i18n),
+// a chave é o id interno da seção (usado por navTo/IntersectionObserver em App.jsx).
+const SECTION_IDS = ['Hero', 'Sobre', 'Trajetória', 'Projetos', 'Skills', 'Contato']
 
 export default function NavBar({ activeSection, onNav }) {
-    const sections = Object.keys(SECTION_LABELS)
+    const { lang, toggleLang, t } = useLanguage()
+    const sections = SECTION_IDS
     const navRef = useRef(null)
 
     // No topo (scrollY 0) a navbar funde-se com o fundo (invisível); assim
@@ -50,14 +45,22 @@ export default function NavBar({ activeSection, onNav }) {
                                 className={`portfolio-nav-btn ${activeSection === s ? 'active' : ''}`}
                                 onClick={() => onNav(s)}
                             >
-                                {SECTION_LABELS[s]}
+                                {t.nav[s]}
                             </button>
                         ))}
                     </div>
 
                     <div className="portfolio-nav-cta">
+                        <AeroBtn
+                            variant="glass"
+                            className="portfolio-nav-lang-btn"
+                            onClick={toggleLang}
+                            aria-label="Toggle language"
+                        >
+                            🌐 {lang === 'pt-BR' ? 'PT-BR' : 'EN'}
+                        </AeroBtn>
                         <AeroBtn variant="forest" onClick={() => onNav('Contato')}>
-                            Fale comigo →
+                            {t.nav.cta}
                         </AeroBtn>
                     </div>
                 </div>

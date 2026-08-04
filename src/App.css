@@ -222,7 +222,18 @@ html, body, .aero-scene {
 }
 
 .portfolio-nav-cta {
+  display: flex;
+  align-items: center;
+  gap: 10px;
   flex-shrink: 0;
+}
+
+/* Largura fixa: "PT-BR" e "EN" têm larguras bem diferentes, então travamos
+   a caixa do botão para ele não empurrar/redimensionar os vizinhos ao trocar. */
+.portfolio-nav-lang-btn {
+  width: 86px;
+  justify-content: center;
+  text-align: center;
 }
 
 .portfolio-nav-btn {

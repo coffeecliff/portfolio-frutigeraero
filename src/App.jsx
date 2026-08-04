@@ -16,6 +16,7 @@ import {
 
 import './App.css'
 import NavBar from './components/navbar'
+import { useLanguage } from './i18n/LanguageContext'
 
 // 🌟 Imagem de fundo da Hero — anexe aqui o caminho do seu arquivo (deve
 // viver em `public/`, ex: `public/assets/hero-bg.jpg`, e ser referenciado
@@ -23,17 +24,18 @@ import NavBar from './components/navbar'
 // branco com máscara).
 const BG_IMAGE = '/assets/water_bg.png'
 
-// Rótulos exibidos na navbar/CTAs usam os mesmos ids de seção do App —
-// aqui só o texto de exibição da Hero.
-const featureItems = [
-  { icon: '✦', label: 'Design Futurista', sub: 'Estética moderna inspirada no visual Frutiger Aero.', variant: 'aqua' },
-  { icon: '</>', label: 'Tecnologia & Performance', sub: 'Soluções rápidas, responsivas e otimizadas.', variant: 'sky' },
-  { icon: '🌿', label: 'Foco em Experiência', sub: 'Interfaces intuitivas que conectam e geram impacto.', variant: 'forest' },
-  { icon: '👤', label: 'Personalizado', sub: 'Cada projeto é único, feito para o seu objetivo.', variant: 'sky' },
+// Ícone e variante de cada destaque da Hero — o texto (label/sub) vem de
+// t.hero.features (i18n), na mesma ordem.
+const featureIcons = [
+  { icon: '✦', variant: 'aqua' },
+  { icon: '</>', variant: 'sky' },
+  { icon: '🌿', variant: 'forest' },
+  { icon: '👤', variant: 'sky' },
 ]
 
 // ── Seção Hero ───────────────────────────────────────────────
 function HeroSection({ navTo }) {
+  const { t } = useLanguage()
   const parallaxRef = useRef(null)
 
   // ── Parallax via scroll ──────────────────────────────────
@@ -67,7 +69,7 @@ function HeroSection({ navTo }) {
 
         <div className="hero-left">
           <AeroPanel useBoxStyle variant="glass" size="sm" className="hero-badge-panel">
-            <span className="hero-badge">Design • Tecnologia • Criatividade</span>
+            <span className="hero-badge">{t.hero.badge}</span>
           </AeroPanel>
 
           <h1 className="hero-title hero-title-neo">
@@ -76,20 +78,20 @@ function HeroSection({ navTo }) {
           </h1>
 
           <p className="hero-desc">
-            Designs e experiências digitais que unem estética futurista, funcionalidade e propósito.
+            {t.hero.desc}
           </p>
 
           <div className="hero-actions">
             <AeroBtn variant="forest" onClick={() => navTo?.('Projetos')}>
-              Ver projetos →
+              {t.hero.ctaProjetos}
             </AeroBtn>
             <AeroBtn variant="glass" onClick={() => navTo?.('Sobre')}>
-              Saiba mais 
+              {t.hero.ctaSobre}
             </AeroBtn>
           </div>
 
           <p className="hero-mini-stats">
-            Visuais elegantes &nbsp;•&nbsp; Entregas de qualidade
+            {t.hero.miniStats}
           </p>
         </div>
 
@@ -112,12 +114,12 @@ function HeroSection({ navTo }) {
       {/* 🌟 Faixa de destaques (design/tecnologia/experiência/personalização) */}
       <AeroPanel useBoxStyle variant="glass" className="hero-features-panel" style={{ position: 'relative', zIndex: 2 }}>
         <AeroGrid cols="auto" gap="4px" className="hero-features-grid">
-          {featureItems.map(f => (
+          {t.hero.features.map((f, i) => (
             <AeroBox
               key={f.label}
-              variant={f.variant}
+              variant={featureIcons[i].variant}
               size="sm"
-              icon={<span>{f.icon}</span>}
+              icon={<span>{featureIcons[i].icon}</span>}
               label={f.label}
               sub={f.sub}
               className="hero-feature-box"
@@ -127,7 +129,7 @@ function HeroSection({ navTo }) {
       </AeroPanel>
 
       <div className="hero-scroll-hint" style={{ position: 'relative', zIndex: 2 }}>
-        <span>↓ Role para explorar </span>
+        <span>{t.hero.scrollHint}</span>
       </div>
 
 
@@ -137,11 +139,12 @@ function HeroSection({ navTo }) {
 
 // ── Seção Sobre ──────────────────────────────────────────────
 function SobreSection() {
+  const { t } = useLanguage()
   return (
     <section className="portfolio-section sobre-section">
       <div className="section-header">
-        <span className="section-eyebrow">Quem sou eu</span>
-        <h2 className="section-title">Um pouco sobre mim</h2>
+        <span className="section-eyebrow">{t.sobre.eyebrow}</span>
+        <h2 className="section-title">{t.sobre.title}</h2>
       </div>
 
       <div className="sobre-grid">
@@ -151,17 +154,14 @@ function SobreSection() {
               <img src="/assets/Icon1.png" style={{ width: '80%', height: '80%', objectFit: 'cover' }} alt="Avatar do Desenvolvedor" />
             </div>
             <AeroPanel useBoxStyle variant="aqua" size="lg" className="sobre-bio-panel">
-              <span className="sobre-name-label">Cauã Cunha Neves</span>
+              <span className="sobre-name-label">{t.sobre.nome}</span>
             </AeroPanel>
           </div>
           <p className="sobre-text">
-            Olá! Meu nome é Cauã tenho 19 anos, e sou desenvolvedor apaixonado por criar interfaces que mesclam estética e função.
-            Me especializo em React, animações CSS e design systems com foco em performance
-            e acessibilidade.
+            {t.sobre.bio1}
           </p>
           <p className="sobre-text" style={{ marginTop: 12 }}>
-            Quando não estou codando, estou explorando novos designs, fazendo jogos
-            ou ouvindo música lo-fi enquanto tomo café ☕
+            {t.sobre.bio2}
           </p>
           <div style={{ marginTop: 16, display: 'flex', gap: 8, flexWrap: 'wrap' }}>
             {['React', 'TypeScript', 'CSS', 'Three.js', 'Node.js'].map(tag => (
@@ -172,15 +172,15 @@ function SobreSection() {
 
         <div className="sobre-side">
 
-          <AeroBox variant="aqua" label="Formação" sub="Técnico em Informática" icon={<span>🎓</span>} />
-          <AeroBox variant="aqua" label="Idiomas" sub="PT-BR / EN" icon={<span>🌐</span>} />
+          <AeroBox variant="aqua" label={t.sobre.formacaoLabel} sub={t.sobre.formacaoSub} icon={<span>🎓</span>} />
+          <AeroBox variant="aqua" label={t.sobre.idiomasLabel} sub={t.sobre.idiomasSub} icon={<span>🌐</span>} />
         </div>
       </div>
-      
+
 
       <div className="section-header">
         <div style={{ margin: 150}}/>
-        <h2 className="section-title">O que é o Frutiger Aero?</h2>
+        <h2 className="section-title">{t.sobre.faTitle}</h2>
       </div>
 
       <div className="sobre-grid">
@@ -190,13 +190,13 @@ function SobreSection() {
               <img src="/assets/pc_icon.png" style={{ width: '80%', height: '80%', objectFit: 'cover' }} alt="Avatar do Desenvolvedor" />
             </div>
             <AeroPanel useBoxStyle variant="aqua" size="lg" className="sobre-bio-panel">
-              <span className="sobre-name-label">Frutiger Aero</span>
+              <span className="sobre-name-label">{t.sobre.faNome}</span>
             </AeroPanel>
           </div>
           <p className="sobre-text" style={{ marginBottom: 50 }}>
-            Frutiger Aero é um estilo de design que prevaleceu de meados dos anos 2000 até o início dos anos 2010. Originou-se no design de interfaces de usuário, mas posteriormente influenciou diversas outras mídias. Foi nomeado em 2017 por Sofi Xian do Instituto de Pesquisa de Estética do Consumidor e ressurgiu em 2023 como uma estética da Internet, tornando-se popular entre a Geração Z como um objeto de nostalgia e estética, que traz a noção da imaginação das pessoas da época em relação ao futuro. A arte Frutiger Aero apresenta temas otimistas de tecnologia em harmonia com a natureza e frequentemente inclui imagens da natureza, cores vibrantes e elementos esqueumórficos.
+            {t.sobre.faTexto}
           </p>
-          
+
         </AeroPanel>
 
         <div className="sobre-side">
@@ -211,29 +211,18 @@ function SobreSection() {
 }
 
 // ── Seção Trajetória (linha do tempo) ─────────────────────────
+// Ícone e variante de cada marco da timeline — o texto (ano/titulo/resumo/detalhe)
+// vem de t.trajetoria.eventos (i18n), casado por id.
+const eventosMeta = {
+  ti1: { ic: '/assets/pc_icon.png', variant: 'forest' },
+  ti2: { ic: '/assets/pc_icon.png', variant: 'aqua' },
+  ti3: { ic: '/assets/pc_icon.png', variant: 'forest' },
+  ti4: { ic: '/assets/pc_icon.png', variant: 'aqua' },
+}
+
 function TrajetoriaSection() {
-  const eventos = [
-    {
-      id: 'ti1', ano: '2023 - 2025', ic: '/assets/pc_icon.png', variant: 'forest', titulo: 'Curso Técnico em Informática',
-      resumo: 'Curso técnico de 2 anos focado no ciclo completo de desenvolvimento de software, infraestrutura de redes e manutenção preventiva/corretiva de computadores.',
-      detalhe: 'Montagem e manutenção de hardware, administração de redes e servidores, desenvolvimento de software.',
-    },
-    {
-      id: 'ti2', ano: '2025', ic: '/assets/pc_icon.png', variant: 'aqua', titulo: 'Módulo I do Senac Tec',
-      resumo: 'Primeiro módulo do curso Senac Tec, com foco no desenvolvimento do Frontend de aplicações web, englobando a construção de interfaces responsivas, estruturação de código e boas práticas de UI/UX.',
-      detalhe: 'Desenvolvimento web colaborativo em equipe e simulação de rotinas de projetos Frontend.',
-    },
-    {
-      id: 'ti3', ano: '2025', ic: '/assets/pc_icon.png', variant: 'forest', titulo: 'Módulo II do Senac Tec',
-      resumo: 'Segundo módulo do curso Senac Tec, com foco na engenharia completa (Full Stack) de aplicações web, abrangendo a integração ponta a ponta entre interfaces de usuário, regras de negócio e bancos de dados.',
-      detalhe: 'Atuação em ambiente de desenvolvimento web em equipe focado em arquitetura Frontend e Backend.',
-    },
-    {
-      id: 'ti4', ano: '2026', ic: '/assets/pc_icon.png', variant: 'aqua', titulo: 'Módulo III do Senac Tec',
-      resumo: 'Terceiro módulo do curso Senac Tec, com foco no desenvolvimento de aplicativos mobile, integrando a criação de interfaces móveis com serviços, consumo de APIs e gestão de dados..',
-      detalhe: 'Desenvolvimento colaborativo de aplicativos móveis em equipe, cobrindo etapas de Frontend e Backend.',
-    },
-  ]
+  const { t } = useLanguage()
+  const eventos = t.trajetoria.eventos.map(ev => ({ ...ev, ...eventosMeta[ev.id] }))
 
   const trackRef = useRef(null)
   const nodeRefs = useRef([])
@@ -272,8 +261,8 @@ function TrajetoriaSection() {
   return (
     <section className="portfolio-section trajetoria-section">
       <div className="section-header">
-        <span className="section-eyebrow">Como cheguei até aqui</span>
-        <h2 className="section-title">Formação</h2>
+        <span className="section-eyebrow">{t.trajetoria.eyebrow}</span>
+        <h2 className="section-title">{t.trajetoria.title}</h2>
       </div>
 
       <div className="timeline-track" ref={trackRef}>
@@ -326,30 +315,34 @@ function TrajetoriaSection() {
   )
 }
 
+// Ícone, imagem e stack de cada projeto — nome/desc/cat vêm de t.projetos.lista
+// (i18n), casados por índice.
+const projetosMeta = [
+  { ic: '/assets/cuidemais_logo.svg', img: '/assets/cuidemais_print.png', variant: 'sky', tech: ['React', 'Node.js', 'Tailwind', 'JavaScript'] },
+  { ic: '/assets/portalturismo_logo.png', img: '/assets/portalturismo_print.png', variant: 'aqua', tech: ['React', 'Node.js', 'Tailwind', 'JavaScript'] },
+]
+
 // ── Seção Projetos ───────────────────────────────────────────
 function ProjetosSection() {
-  const projetos = [
-    { nome: 'Cuide+', desc: 'Site fictício de gerenciamento de psicólogos e pacientes.', cat: 'Web App', ic: '/assets/cuidemais_logo.svg', img: '/assets/cuidemais_print.png', variant: 'sky', tech: ['React', 'Node.js', 'Tailwind', 'JavaScript' ] },
-    { nome: 'Portal Turismo da Miku', desc: 'Agência de turismo fictícia inspirada na personagem e cantora Hatsune Miku (初音ミク).', cat: 'Web App', ic: '/assets/portalturismo_logo.png', img: '/assets/portalturismo_print.png', variant: 'aqua', tech: ['React', 'Node.js', 'Tailwind', 'JavaScript'] },
+  const { t } = useLanguage()
+  const projetos = t.projetos.lista.map((p, i) => ({ ...p, ...projetosMeta[i] }))
 
-  ]
-
-  const [selecionado, setSelecionado] = useState(projetos[0].nome)
-  const ativo = projetos.find(p => p.nome === selecionado) ?? projetos[0]
+  const [selecionado, setSelecionado] = useState(0)
+  const ativo = projetos[selecionado] ?? projetos[0]
 
   return (
     <section className="portfolio-section projetos-section">
       <div className="section-header">
-        <span className="section-eyebrow">O que eu construí</span>
-        <h2 className="section-title">Projetos em Destaque</h2>
+        <span className="section-eyebrow">{t.projetos.eyebrow}</span>
+        <h2 className="section-title">{t.projetos.title}</h2>
       </div>
 
       <div className="filtros-bar">
-        {projetos.map(p => (
+        {projetos.map((p, i) => (
           <AeroBtn
             key={p.nome}
-            variant={selecionado === p.nome ? 'sky' : 'glass'}
-            onClick={() => setSelecionado(p.nome)}
+            variant={selecionado === i ? 'sky' : 'glass'}
+            onClick={() => setSelecionado(i)}
           >
             <img src={p.ic} alt="" className="projeto-filtro-icone" />{p.nome}
           </AeroBtn>
@@ -376,9 +369,9 @@ function ProjetosSection() {
           <h3 className="projeto-destaque-titulo">{ativo.nome}</h3>
           <p className="projeto-destaque-desc">{ativo.desc}</p>
           <div className="projeto-destaque-tags">
-            {ativo.tech.map(t => <span key={t} className="tech-tag tech-tag--dark">{t}</span>)}
+            {ativo.tech.map(tech => <span key={tech} className="tech-tag tech-tag--dark">{tech}</span>)}
           </div>
-          <AeroBtn variant="glass">Ver Projeto →</AeroBtn>
+          <AeroBtn variant="glass">{t.projetos.verProjeto}</AeroBtn>
         </div>
       </AeroPanel>
     </section>
@@ -387,6 +380,7 @@ function ProjetosSection() {
 
 // ── Seção Skills ─────────────────────────────────────────────
 function SkillsSection() {
+  const { t } = useLanguage()
   const skills = [
     { nome: 'React / Next.js', nivel: 95, ic: <SiReact color="#131313" />, var: 'forest' },
     { nome: 'TypeScript', nivel: 80, ic: <SiTypescript color="#131313" />, var: 'sky' },
@@ -409,12 +403,12 @@ function SkillsSection() {
   return (
     <section className="portfolio-section skills-section">
       <div className="section-header">
-        <span className="section-eyebrow">Meu arsenal</span>
-        <h2 className="section-title">Skills & Tecnologias</h2>
+        <span className="section-eyebrow">{t.skills.eyebrow}</span>
+        <h2 className="section-title">{t.skills.title}</h2>
       </div>
 
       <div className="skills-layout">
-        <AeroPanel title="Nível de Proficiência" className="skills-bars-panel">
+        <AeroPanel title={t.skills.proficiencia} className="skills-bars-panel">
           {skills.map(s => (
             <div key={s.nome} className="skill-row">
               <div className="skill-info">
@@ -433,7 +427,7 @@ function SkillsSection() {
         </AeroPanel>
 
         <div className="skills-right">
-          <AeroPanel title="Ferramentas & Stack" className="tools-panel">
+          <AeroPanel title={t.skills.ferramentas} className="tools-panel">
             <AeroGrid cols={2} gap="10px">
               {ferramentas.map(f => (
                 <AeroBox key={f.nome} size="sm" variant="glass" label={f.nome} icon={<span>{f.ic}</span>} />
@@ -444,7 +438,7 @@ function SkillsSection() {
           <AeroPanel useBoxStyle variant="sky" size="lg" className="cta-learn-panel">
             <span style={{ fontSize: 36 }}>🌟</span>
             <p style={{ color: 'rgba(255,255,255,0.95)', fontSize: '1rem', marginTop: 8 }}>
-              Sempre aprendendo novas tecnologias e metodologias para entregar o melhor.
+              {t.skills.ctaLearn}
             </p>
           </AeroPanel>
         </div>
@@ -462,11 +456,12 @@ const contatoLinks = [
 ]
 
 function ContatoSection() {
+  const { t } = useLanguage()
   return (
     <section className="portfolio-section contato-section">
       <div className="section-header">
-        <span className="section-eyebrow">Vamos conversar</span>
-        <h2 className="section-title">Entre em Contato</h2>
+        <span className="section-eyebrow">{t.contato.eyebrow}</span>
+        <h2 className="section-title">{t.contato.title}</h2>
       </div>
 
 
@@ -475,13 +470,12 @@ function ContatoSection() {
 
           <AeroPanel useBoxStyle variant="glass" className="contato-quote-panel">
             <p className="contato-quote">
-              "Adoro novos desafios! Seja um projeto pequeno ou com um ,
-              estou aqui para construir algo incrível juntos."
+              {t.contato.quote}
             </p>
           </AeroPanel>
         </div>
 
-        <AeroPanel title="Fale Comigo" className="contato-form-panel">
+        <AeroPanel title={t.contato.faleComigo} className="contato-form-panel">
           <AeroGrid cols={2} gap="12px" className="contato-links-grid">
             {contatoLinks.map(c => (
               <AeroBox

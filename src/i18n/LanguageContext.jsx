@@ -70,9 +70,9 @@ const translations = {
       title: 'Projetos em Destaque',
       verProjeto: 'Ver Projeto →',
       lista: [
-        { nome: 'Portal Turismo da Miku (2024)', desc: 'Agência de turismo fictícia inspirada na personagem e cantora Hatsune Miku (初音ミク).', cat: 'Web App' },
-        { nome: 'Cuide+ (2025)', desc: 'Site fictício de gerenciamento de psicólogos e pacientes.', cat: 'Web App' },
+        { nome: 'Cuide+ | Segunda Versão (2026)', desc: 'Site fictício de gerenciamento de psicólogos e pacientes.', cat: 'Web App' },
         { nome: 'Jellycubes Games (2026)', desc: 'Site de jogos Browser fictício, feito com o estilo Maximalista.', cat: 'Web App' },
+        { nome: 'Portal Turismo da Miku (2024)', desc: 'Agência de turismo fictícia inspirada na personagem e cantora Hatsune Miku (初音ミク).', cat: 'Web App' },
       ],
     },
     skills: {
@@ -159,9 +159,9 @@ const translations = {
       title: 'Featured Projects',
       verProjeto: 'View Project →',
       lista: [
-        { nome: 'Miku Tourism Portal (2024)', desc: 'Fictional travel agency inspired by the character and singer Hatsune Miku (初音ミク).', cat: 'Web App' },
-        { nome: 'Cuide+ (2025)', desc: 'Fictional management site for psychologists and patients.', cat: 'Web App' },
+        { nome: 'Cuide+ | Second Version (2026)', desc: 'Fictional management site for psychologists and patients.', cat: 'Web App' },
         { nome: 'Jellycubes Games (2026)', desc: 'Fictional browser game site, made with the Maximalist style.', cat: 'Web App' },
+        { nome: 'Miku Tourism Portal (2024)', desc: 'Fictional travel agency inspired by the character and singer Hatsune Miku (初音ミク).', cat: 'Web App' },
       ],
     },
     skills: {

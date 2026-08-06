@@ -325,9 +325,11 @@ function TrajetoriaSection() {
 // Ícone, imagem e stack de cada projeto — nome/desc/cat vêm de t.projetos.lista
 // (i18n), casados por índice.
 const projetosMeta = [
+    { ic: '/assets/cuidemais_logo.svg', img: '/assets/cuidemais_print.png', variant: 'sky', tech: ['React', 'Node.js', 'Tailwind', 'JavaScript'] },
+    { ic: '/assets/jellycubes_logo.svg', img: '/assets/jellycubes_print.png', variant: 'forest', tech: ['React', 'Node.js', 'Tailwind', 'TypeScript'] },
   { ic: '/assets/portalturismo_logo.png', img: '/assets/portalturismo_print.png', variant: 'aqua', tech: ['React', 'Node.js', 'Tailwind', 'JavaScript'] },
-  { ic: '/assets/cuidemais_logo.svg', img: '/assets/cuidemais_print.png', variant: 'sky', tech: ['React', 'Node.js', 'Tailwind', 'JavaScript'] },
-  { ic: '/assets/jellycubes_logo.svg', img: '/assets/jellycubes_print.png', variant: 'forest', tech: ['React', 'Node.js', 'Tailwind', 'TypeScript'] },
+
+
 ]
 
 // ── Seção Projetos ───────────────────────────────────────────

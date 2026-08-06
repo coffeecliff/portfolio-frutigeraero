@@ -136,13 +136,24 @@ export function AeroGrid({ cols = 'auto', gap, className = '', style, children }
 /**
  * AeroBtn — Frutiger Aero glassy pill button
  */
-export function AeroBtn({ children, variant = 'sky', onClick, className = '', style }) {
+export function AeroBtn({ children, variant = 'sky', onClick, className = '', style, href, ...rest }) {
+  const classes = `aero-btn ${variant !== 'sky' ? `aero-btn--${variant}` : ''} ${className}`
+
+  if (href) {
+    return (
+      <a href={href} className={classes} style={style} onClick={onClick} {...rest}>
+        {children}
+      </a>
+    )
+  }
+
   return (
     <button
       type="button"
-      className={`aero-btn ${variant !== 'sky' ? `aero-btn--${variant}` : ''} ${className}`}
+      className={classes}
       style={style}
       onClick={onClick}
+      {...rest}
     >
       {children}
     </button>

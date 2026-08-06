@@ -186,7 +186,7 @@ function SobreSection() {
 
 
       <div className="section-header">
-        <div style={{ margin: 150}}/>
+        <div style={{ margin: 150 }} />
         <h2 className="section-title">{t.sobre.faTitle}</h2>
       </div>
 
@@ -325,11 +325,9 @@ function TrajetoriaSection() {
 // Ícone, imagem e stack de cada projeto — nome/desc/cat vêm de t.projetos.lista
 // (i18n), casados por índice.
 const projetosMeta = [
-    { ic: '/assets/cuidemais_logo.svg', img: '/assets/cuidemais_print.png', variant: 'sky', tech: ['React', 'Node.js', 'Tailwind', 'JavaScript'] },
-    { ic: '/assets/jellycubes_logo.svg', img: '/assets/jellycubes_print.png', variant: 'forest', tech: ['React', 'Node.js', 'Tailwind', 'TypeScript'] },
-  { ic: '/assets/portalturismo_logo.png', img: '/assets/portalturismo_print.png', variant: 'aqua', tech: ['React', 'Node.js', 'Tailwind', 'JavaScript'] },
-
-
+  { ic: '/assets/cuidemais_logo.svg', img: '/assets/cuidemais_print.png', variant: 'sky', tech: ['React', 'Node.js', 'Tailwind', 'JavaScript'], url: 'https://cuidemais.vercel.app' },
+  { ic: '/assets/jellycubes_logo.svg', img: '/assets/jellycubes_print.png', variant: 'forest', tech: ['React', 'Node.js', 'Tailwind', 'TypeScript'], url: 'https://jellycubesgames.vercel.app' },
+  { ic: '/assets/portalturismo_logo.png', img: '/assets/portalturismo_print.png', variant: 'aqua', tech: ['React', 'Node.js', 'Tailwind', 'JavaScript'], url: 'https://frontend-portal-turismo-tau.vercel.app' },
 ]
 
 // ── Seção Projetos ───────────────────────────────────────────
@@ -381,7 +379,14 @@ function ProjetosSection() {
           <div className="projeto-destaque-tags">
             {ativo.tech.map(tech => <span key={tech} className="tech-tag tech-tag--dark">{tech}</span>)}
           </div>
-          <AeroBtn variant="glass">{t.projetos.verProjeto}</AeroBtn>
+          <AeroBtn
+            href={ativo.url}
+            target="_blank"
+            rel="noopener noreferrer"
+            variant="glass"
+          >
+            {t.projetos.verProjeto}
+          </AeroBtn>
         </div>
       </AeroPanel>
     </section>

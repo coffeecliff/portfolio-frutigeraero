@@ -464,9 +464,9 @@ function SkillsSection() {
 
 // ── Seção Contato ────────────────────────────────────────────
 const contatoLinks = [
-  { label: 'GitHub', sub: 'github.com/coffeecliff', icon: <FaGithub style={{ color: '#171717' }} />, variant: 'aurora', href: 'https://github.com/coffeecliff' },
+  { label: 'GitHub', sub: 'Cauã Cunha / coffeecliff', icon: <FaGithub style={{ color: '#171717' }} />, variant: 'aurora', href: 'https://github.com/coffeecliff' },
   { label: 'WhatsApp', sub: '+55 (35) 99919-4121', icon: <FaWhatsapp style={{ color: '#25D366' }} />, variant: 'aurora', href: 'https://wa.me/5535999194121' },
-  { label: 'LinkedIn', sub: 'linkedin.com/in/coffeecliff', icon: '💼', variant: 'aurora', href: 'https://linkedin.com/in/coffeecliff' },
+  { label: 'LinkedIn', sub: 'Cauã Cunha', icon: '💼', variant: 'aurora', href: 'https://www.linkedin.com/in/cauã-cunha-84700b427/' },
   { label: 'E-mail', sub: 'cauaneves976@gmail.com', icon: '📧', variant: 'aurora', href: 'mailto:cauaneves976@gmail.com' },
 ]
 
